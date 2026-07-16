@@ -38,7 +38,7 @@
             --shadow: rgba(0, 0, 0, 0.1);
         }
 
-        /* ÖZEL KURSOR EKLENTİSİ (Koyu Pembe Tonu) */
+        /* ÖZEL KURSOR */
         body {
             margin: 0;
             padding: 0;
@@ -53,7 +53,6 @@
             cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M4 2L4 22L9 16L16 16Z" fill="%23ba273f" stroke="%23ffffff" stroke-width="1.5" stroke-linejoin="round"/></svg>'), auto;
         }
 
-        /* Tıklanabilir alanlar için el işareti kursoru (Koyu Pembe) */
         a, button, .card, .header-icon, .header-title, .social-item, .close-btn, .verified, [onclick] {
             cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10 2a2 2 0 0 1 2 2v4h1a2 2 0 0 1 2 2v1h1a2 2 0 0 1 2 2v5a5 5 0 0 1-5 5h-4a5 5 0 0 1-5-5V8a2 2 0 0 1 2-2h1V4a2 2 0 0 1 2-2z" fill="%23ba273f" stroke="%23ffffff" stroke-width="1"/></svg>'), pointer !important;
         }
@@ -73,245 +72,96 @@
             transition: background-color 0.3s, border-color 0.3s;
         }
 
-        .header-left {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
+        .header-left { display: flex; align-items: center; text-decoration: none; cursor: pointer; }
         .header-icon {
-            color: #ff69b4; 
-            font-size: 24px;
-            margin-right: 12px;
-            background-color: var(--panel-border);
-            padding: 8px;
-            border-radius: 8px;
-            transition: 0.3s;
+            color: #ff69b4; font-size: 24px; margin-right: 12px;
+            background-color: var(--panel-border); padding: 8px; border-radius: 8px; transition: 0.3s;
         }
-        
-        .header-icon:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 12px var(--text-pink);
-        }
+        .header-icon:hover { transform: scale(1.1); box-shadow: 0 0 12px var(--text-pink); }
 
         .header-title {
-            color: var(--text-pink);
-            font-size: 26px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-shadow: 1px 1px 0px rgba(0,0,0,0.2);
+            color: var(--text-pink); font-size: 26px; font-weight: 700;
+            letter-spacing: 1px; text-shadow: 1px 1px 0px rgba(0,0,0,0.2);
         }
 
-        .header-right {
-            display: flex;
-            gap: 10px;
-        }
-
+        .header-right { display: flex; gap: 10px; }
         .header-btn {
-            background-color: var(--panel-border);
-            border: none;
-            color: var(--text-main);
-            width: 45px;
-            height: 45px;
-            border-radius: 10px;
-            font-size: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: 0.2s;
+            background-color: var(--panel-border); border: none; color: var(--text-main);
+            width: 45px; height: 45px; border-radius: 10px; font-size: 20px;
+            display: flex; justify-content: center; align-items: center; transition: 0.2s;
         }
+        .header-btn:hover { background-color: var(--text-pink); color: white; transform: translateY(-2px); }
 
-        .header-btn:hover {
-            background-color: var(--text-pink);
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        /* FOOTER LİNKLERİ */
+        /* FOOTER */
         footer {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            padding: 12px 25px;
-            box-sizing: border-box;
-            font-size: 14px;
-            background-color: var(--footer-bg);
-            border-top: 1px solid var(--panel-border);
-            z-index: 10;
+            position: fixed; bottom: 0; width: 100%; display: flex; justify-content: space-between;
+            padding: 12px 25px; box-sizing: border-box; font-size: 14px;
+            background-color: var(--footer-bg); border-top: 1px solid var(--panel-border); z-index: 10;
         }
-
-        .footer-link {
-            color: var(--white);
-            text-decoration: none;
-            transition: color 0.2s, transform 0.2s;
-            display: inline-block;
-        }
-
-        .footer-link:hover {
-            color: var(--text-pink);
-            transform: translateY(-2px);
-        }
+        .footer-link { color: var(--white); text-decoration: none; transition: 0.2s; display: inline-block; }
+        .footer-link:hover { color: var(--text-pink); transform: translateY(-2px); }
 
         /* SAYFA YAPISI */
-        .page {
-            display: none;
-            flex: 1;
-            width: 100%;
-            height: 100%;
-            animation: fadeIn 0.4s ease forwards;
-        }
+        .page { display: none; flex: 1; width: 100%; height: 100%; animation: fadeIn 0.4s ease forwards; }
+        .page.active { display: flex; }
+        #main-page { justify-content: center; align-items: center; padding-bottom: 60px; }
+        .main-container { display: flex; justify-content: center; align-items: center; gap: 60px; width: 100%; max-width: 1100px; }
 
-        .page.active {
-            display: flex;
-        }
-
-        #main-page {
-            justify-content: center;
-            align-items: center;
-            padding-bottom: 60px;
-        }
-
-        .main-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 60px; 
-            width: 100%;
-            max-width: 1100px;
-        }
-
-        /* İstediğini Oluştur Yazısı */
         .generate-text {
-            color: var(--text-pink);
-            font-size: 48px;
-            font-weight: 700;
-            letter-spacing: 2px;
-            transform: translateY(30px);
-            opacity: 0;
-            animation: slideUpIn 0.8s ease forwards;
-            text-shadow: 3px 3px 0px rgba(0,0,0,0.3);
-            white-space: nowrap;
+            color: var(--text-pink); font-size: 48px; font-weight: 700;
+            letter-spacing: 2px; transform: translateY(30px); opacity: 0;
+            animation: slideUpIn 0.8s ease forwards; text-shadow: 3px 3px 0px rgba(0,0,0,0.3); white-space: nowrap;
         }
 
-        @keyframes slideUpIn {
-            to { transform: translateY(0); opacity: 1; }
-        }
+        @keyframes slideUpIn { to { transform: translateY(0); opacity: 1; } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        /* YENİ KART KAPSAYICISI VE TOOLTİPLER */
-        .cards-wrapper {
-            display: flex;
-            gap: 20px;
-            align-items: center;
-        }
-
-        .card-box {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
+        /* KARTLAR VE TOOLTİPLER */
+        .cards-wrapper { display: flex; gap: 20px; align-items: center; }
+        .card-box { position: relative; display: flex; flex-direction: column; align-items: center; }
+        
         .card-tooltip {
-            position: absolute;
-            bottom: 100%;
-            left: 50%;
-            transform: translate(-50%, 20px);
-            background: var(--panel-bg);
-            border: 2px solid var(--text-pink);
-            border-radius: 12px;
-            padding: 12px;
-            width: 150px;
-            color: var(--white);
-            text-align: center;
-            opacity: 0;
-            visibility: hidden;
+            position: absolute; bottom: 100%; left: 50%; transform: translate(-50%, 20px);
+            background: var(--panel-bg); border: 2px solid var(--text-pink);
+            border-radius: 12px; padding: 12px; width: 150px; color: var(--white);
+            text-align: center; opacity: 0; visibility: hidden;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 8px 20px var(--shadow);
-            z-index: 50;
-            pointer-events: none;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            box-shadow: 0 8px 20px var(--shadow); z-index: 50; pointer-events: none;
+            display: flex; flex-direction: column; align-items: center;
         }
+        .card-box:hover .card-tooltip { opacity: 1; visibility: visible; transform: translate(-50%, -15px); }
 
-        .card-box:hover .card-tooltip {
-            opacity: 1;
-            visibility: visible;
-            transform: translate(-50%, -15px);
-        }
+        .tooltip-title { font-weight: 700; color: var(--text-pink); margin-bottom: 3px; font-size: 16px; white-space: nowrap; }
+        .tooltip-desc { color: #88929e; font-size: 13px; margin-bottom: 8px; }
+        .tooltip-char-wrapper { transform: scale(0.45); transform-origin: top center; height: 55px; width: 100px; }
 
-        .tooltip-title {
-            font-weight: 700;
-            color: var(--text-pink);
-            margin-bottom: 3px;
-            font-size: 16px;
-            white-space: nowrap;
-        }
-
-        .tooltip-desc {
-            color: #88929e;
-            font-size: 13px;
-            margin-bottom: 8px;
-        }
-
-        .tooltip-char-wrapper {
-            transform: scale(0.45);
-            transform-origin: top center;
-            height: 55px;
-            width: 100px;
-        }
-
-        /* ORİJİNAL KART DÜZENİ (Korundu) */
         .card {
-            width: 165px;
-            height: 165px;
-            border-radius: 16px;
-            position: relative;
-            box-shadow: 0 8px 25px var(--shadow);
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            display: flex;
-            justify-content: center;
-            align-items: flex-end; 
-            overflow: hidden;
+            width: 165px; height: 165px; border-radius: 16px; position: relative;
+            box-shadow: 0 8px 25px var(--shadow); transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex; justify-content: center; align-items: flex-end; overflow: hidden;
         }
+        .card:hover { transform: scale(1.08) !important; box-shadow: 0 12px 30px var(--shadow); }
 
-        .card:hover {
-            transform: scale(1.08) !important;
-            box-shadow: 0 12px 30px var(--shadow);
-        }
-
-        /* Çapraz Duruşlar */
         .card-1 { background: var(--card-1); transform: translateY(15px); }
         .card-2 { background: var(--card-2); transform: translateY(-25px); }
         .card-3 { background: var(--card-3); transform: translateY(15px); }
 
         /* MİNECRAFT KARAKTERLERİ */
         .mc-char { width: 100px; height: 120px; position: relative; }
-        
-        /* Karakter 1 */
+        /* C1 */
         .c1-head { position: absolute; bottom: 60px; left: 15px; width: 70px; height: 70px; background: #f1c27d; border-radius: 2px; box-shadow: inset 0 15px 0 #d9a05b; }
         .c1-eyes { position: absolute; bottom: 85px; left: 30px; width: 10px; height: 10px; background: #fff; box-shadow: 30px 0 0 #fff; }
         .c1-pupils { position: absolute; bottom: 85px; left: 34px; width: 6px; height: 10px; background: #71b48b; box-shadow: 30px 0 0 #71b48b; }
         .c1-hood { position: absolute; bottom: 60px; left: 5px; width: 90px; height: 80px; background: #86e0a4; opacity: 0.9; clip-path: polygon(0 20%, 10% 0, 90% 0, 100% 20%, 100% 100%, 80% 100%, 80% 20%, 20% 20%, 20% 100%, 0 100%); }
         .c1-body { position: absolute; bottom: 0; left: 10px; width: 80px; height: 60px; background: #a5f0c5; }
         .c1-strings { position: absolute; bottom: 20px; left: 25px; width: 4px; height: 40px; background: #2a5a3f; box-shadow: 46px 0 0 #2a5a3f; }
-
-        /* Karakter 2 */
+        /* C2 */
         .c2-hair-back { position: absolute; bottom: 40px; left: 10px; width: 80px; height: 90px; background: #e5cdb2; }
         .c2-head { position: absolute; bottom: 60px; left: 20px; width: 60px; height: 60px; background: #fff0e5; }
         .c2-eyes { position: absolute; bottom: 80px; left: 25px; width: 15px; height: 8px; background: #96a5c1; box-shadow: 35px 0 0 #96a5c1; }
         .c2-hair-front { position: absolute; bottom: 90px; left: 10px; width: 80px; height: 40px; background: #e5cdb2; clip-path: polygon(0 0, 100% 0, 100% 100%, 70% 80%, 30% 80%, 0 100%); }
         .c2-body { position: absolute; bottom: 0; left: 15px; width: 70px; height: 60px; background: repeating-linear-gradient(180deg, #ffd6e0, #ffd6e0 15px, #fff 15px, #fff 30px); }
-
-        /* Karakter 3 */
+        /* C3 */
         .c3-head { position: absolute; bottom: 60px; left: 20px; width: 60px; height: 60px; background: #ffe4cc; }
         .c3-hair { position: absolute; bottom: 60px; left: 15px; width: 70px; height: 60px; background: #4a4a4a; clip-path: polygon(0 100%, 15% 40%, 85% 40%, 100% 100%); }
         .c3-hat { position: absolute; bottom: 100px; left: 10px; width: 80px; height: 40px; background: #719b6a; border-radius: 4px 4px 0 0; }
@@ -322,16 +172,9 @@
 
         /* PENCERELER */
         .inner-page-content {
-            width: 100%;
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 30px;
-            text-align: center;
-            overflow-y: auto;
-            max-height: calc(100vh - 150px);
-            background: rgba(255, 255, 255, 0.01);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
+            width: 100%; max-width: 900px; margin: 40px auto; padding: 30px;
+            text-align: center; overflow-y: auto; max-height: calc(100vh - 150px);
+            background: rgba(255, 255, 255, 0.01); backdrop-filter: blur(10px); border-radius: 20px;
         }
 
         .inner-page-content::-webkit-scrollbar { width: 8px; }
@@ -340,259 +183,87 @@
         .inner-page-content::-webkit-scrollbar-thumb:hover { background: var(--text-pink); }
 
         .page-title {
-            color: var(--white);
-            font-size: 38px;
-            font-weight: 700;
-            margin-bottom: 35px;
-            display: inline-block;
-            border-bottom: 3px solid var(--text-pink);
-            padding-bottom: 8px;
+            color: var(--white); font-size: 38px; font-weight: 700; margin-bottom: 35px;
+            display: inline-block; border-bottom: 3px solid var(--text-pink); padding-bottom: 8px;
         }
 
-        /* HEDEF BARLARI (YENİ EKLENEN CSS) */
-        .progress-wrapper {
-            background: var(--panel-bg);
-            border: 2px solid var(--panel-border);
-            border-radius: 16px;
-            padding: 35px;
-            margin-top: 10px;
-            box-shadow: 0 4px 12px var(--shadow);
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .progress-text {
-            font-size: 26px;
-            color: var(--white);
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
-        .progress-bar-bg {
-            width: 100%;
-            height: 35px;
-            background: rgba(0,0,0,0.3);
-            border-radius: 20px;
-            overflow: hidden;
-            border: 2px solid var(--panel-border);
-        }
-        .progress-bar-fill {
-            height: 100%;
-            width: 0%;
-            background: linear-gradient(90deg, #e9445e, #ff69b4);
-            border-radius: 20px;
-            transition: width 0.2s linear;
-        }
-        .stars-container {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            font-size: 32px;
-            margin-bottom: 25px;
-            min-height: 40px;
-        }
-        .star-anim {
-            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        @keyframes popIn {
-            0% { transform: scale(0); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-
-        /* İndirmeler */
-        .download-grid {
+        /* YENİ "DİĞER ŞEYLER" SAYFASI TASARIMI */
+        .features-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: 1fr 1fr;
             gap: 20px;
+            max-width: 800px;
+            margin: 30px auto 0;
         }
 
-        .dl-card {
-            background-color: var(--panel-bg);
-            border: 2px solid var(--panel-border);
-            border-radius: 16px;
-            padding: 24px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 12px var(--shadow);
+        .progress-wrapper {
+            background: var(--panel-bg); border: 2px solid var(--panel-border);
+            border-radius: 16px; padding: 35px; box-shadow: 0 4px 12px var(--shadow);
+            max-width: 800px; margin: 0 auto;
+        }
+        .progress-text { font-size: 26px; color: var(--white); margin-bottom: 20px; font-weight: 600; }
+        .progress-bar-bg { width: 100%; height: 35px; background: rgba(0,0,0,0.3); border-radius: 20px; overflow: hidden; border: 2px solid var(--panel-border); }
+        .progress-bar-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #e9445e, #ff69b4); border-radius: 20px; transition: width 0.5s ease; }
+        .info-note { font-size: 14px; color: #88929e; margin-top: 15px; font-style: italic; }
+
+        /* EĞLENCE KUTULARI */
+        .fun-box {
+            background: var(--panel-bg); border: 2px solid var(--panel-border);
+            border-radius: 16px; padding: 25px; box-shadow: 0 4px 12px var(--shadow);
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+        }
+        .fun-box h2 { color: var(--card-1); font-size: 22px; margin-top: 0; margin-bottom: 15px; }
+        
+        /* Şanslı Zar */
+        .dice {
+            width: 60px; height: 60px; background: var(--white); color: #222;
+            font-size: 36px; font-weight: bold; display: flex; align-items: center; justify-content: center;
+            border-radius: 12px; margin-bottom: 15px; transition: transform 0.3s ease; border: 3px solid var(--text-pink);
         }
 
-        .dl-card:hover { 
-            border-color: var(--card-1); 
-            transform: translateY(-4px); 
-            box-shadow: 0 8px 20px rgba(29, 226, 179, 0.15); 
+        /* Buton Stili */
+        .btn-action {
+            background-color: var(--text-pink); color: #fff; border: none; padding: 12px 20px;
+            border-radius: 10px; font-size: 18px; font-weight: 600; font-family: 'Pixelify Sans', sans-serif;
+            transition: all 0.2s;
         }
+        .btn-action:hover { background-color: #ba273f; transform: scale(1.05); }
 
+        /* İndirmeler ve Sosyal */
+        .download-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .dl-card { background-color: var(--panel-bg); border: 2px solid var(--panel-border); border-radius: 16px; padding: 24px; display: flex; justify-content: space-between; align-items: center; transition: all 0.3s ease; }
+        .dl-card:hover { border-color: var(--card-1); transform: translateY(-4px); }
         .dl-info { text-align: left; }
         .dl-name { font-size: 22px; font-weight: 600; color: var(--white); margin-bottom: 4px; }
         .dl-status { font-size: 15px; color: #88929e; }
 
-        .btn-download {
-            background-color: #2ecc71;
-            color: #fff;
-            text-decoration: none;
-            padding: 12px 22px;
-            border-radius: 10px;
-            font-size: 18px;
-            font-weight: 600;
-            font-family: 'Pixelify Sans', sans-serif;
-            transition: all 0.2s;
-            border: 2px solid #27ae60;
-        }
-        
-        .btn-download:hover { 
-            background-color: #27ae60; 
-            box-shadow: 0 0 15px rgba(46, 204, 113, 0.4); 
-            transform: scale(1.05);
-        }
-
-        /* Sosyal Medya */
-        .social-list {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            align-items: center;
-        }
-
-        .social-item {
-            background-color: var(--panel-bg);
-            width: 100%;
-            max-width: 580px;
-            padding: 20px 25px;
-            border-radius: 16px;
-            text-align: left;
-            text-decoration: none;
-            color: var(--white);
-            font-size: 22px;
-            display: flex;
-            align-items: center;
-            border: 2px solid var(--panel-border);
-            transition: all 0.3s;
-            box-shadow: 0 4px 12px var(--shadow);
-        }
-
-        .social-item:hover { 
-            border-color: var(--text-pink); 
-            background-color: var(--panel-bg); 
-            transform: translateY(-3px) scale(1.01); 
-            box-shadow: 0 8px 20px rgba(233, 68, 94, 0.15);
-        }
+        .social-list { display: flex; flex-direction: column; gap: 15px; align-items: center; }
+        .social-item { background-color: var(--panel-bg); width: 100%; max-width: 580px; padding: 20px 25px; border-radius: 16px; text-align: left; text-decoration: none; color: var(--white); font-size: 22px; display: flex; align-items: center; border: 2px solid var(--panel-border); transition: all 0.3s; }
+        .social-item:hover { border-color: var(--text-pink); transform: translateY(-3px) scale(1.01); }
         .social-icon { font-size: 30px; margin-right: 18px; }
 
         .bot-container { flex-direction: column; align-items: flex-start; cursor: default; }
         .bot-container:hover { border-color: var(--panel-border); transform: none; box-shadow: none; }
-        
-        .bot-list {
-            list-style: none;
-            padding: 0;
-            margin-top: 15px;
-            width: 100%;
-            background: rgba(0,0,0,0.15);
-            border-radius: 10px;
-            padding: 5px 15px;
-            box-sizing: border-box;
-        }
-
-        .bot-li {
-            padding: 12px 0;
-            font-size: 19px;
-            color: var(--text-main);
-            display: flex;
-            align-items: center;
-            border-bottom: 1px dashed var(--panel-border);
-        }
+        .bot-list { list-style: none; padding: 0; margin-top: 15px; width: 100%; background: rgba(0,0,0,0.15); border-radius: 10px; padding: 5px 15px; box-sizing: border-box; }
+        .bot-li { padding: 12px 0; font-size: 19px; display: flex; align-items: center; border-bottom: 1px dashed var(--panel-border); }
         .bot-li:last-child { border-bottom: none; }
         .bot-icon { margin-right: 12px; }
+        .verified { color: #2ecc71; margin-left: auto; }
 
-        .verified {
-            color: #2ecc71;
-            margin-left: auto; 
-            position: relative;
-        }
-
-        .verified::after {
-            content: 'Onaylı';
-            position: absolute;
-            bottom: 25px; right: 0;
-            background: var(--text-pink);
-            color: #fff;
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-size: 13px;
-            opacity: 0;
-            pointer-events: none;
-            transition: 0.2s;
-            white-space: nowrap;
-        }
-        .verified:hover::after { opacity: 1; bottom: 30px; }
-
-        /* MODAL (AÇILIR PENCERE) */
-        .modal-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.7);
-            backdrop-filter: blur(8px);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
+        /* MODAL */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); backdrop-filter: blur(8px); display: none; justify-content: center; align-items: center; z-index: 1000; opacity: 0; transition: 0.3s; }
         .modal-overlay.active { display: flex; opacity: 1; }
-
-        .modal-box {
-            background: var(--panel-bg);
-            padding: 45px;
-            border-radius: 20px;
-            border: 3px solid var(--text-pink);
-            text-align: center;
-            transform: scale(0.85);
-            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            min-width: 320px;
-        }
-
+        .modal-box { background: var(--panel-bg); padding: 45px; border-radius: 20px; border: 3px solid var(--text-pink); text-align: center; transform: scale(0.85); transition: 0.3s; position: relative; min-width: 320px; }
         .modal-overlay.active .modal-box { transform: scale(1); }
         .modal-text { font-size: 26px; color: var(--white); margin: 0 0 20px 0; }
-        
-        .close-btn {
-            position: absolute;
-            top: 10px; right: 15px;
-            font-size: 28px;
-            color: #88929e;
-            transition: 0.2s;
-        }
+        .close-btn { position: absolute; top: 10px; right: 15px; font-size: 28px; color: #88929e; transition: 0.2s; }
         .close-btn:hover { color: var(--text-pink); }
 
-        /* MÜZİK PLAYER BUTONLARI */
-        .music-btn {
-            background-color: #2ecc71;
-            border: 2px solid #27ae60;
-            color: white;
-            width: 65px;
-            height: 65px;
-            border-radius: 50%;
-            font-size: 28px;
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            transition: all 0.2s ease;
-            box-shadow: 0 4px 10px rgba(46, 204, 113, 0.3);
-            font-family: 'Pixelify Sans', sans-serif;
-        }
-
-        .music-btn:hover {
-            transform: scale(1.1);
-            background-color: #27ae60;
-            box-shadow: 0 6px 15px rgba(46, 204, 113, 0.5);
-        }
-
-        .music-btn.playing { background-color: #e74c3c; border-color: #c0392b; box-shadow: 0 4px 10px rgba(231, 76, 60, 0.3); }
-        .music-btn.playing:hover { background-color: #c0392b; box-shadow: 0 6px 15px rgba(231, 76, 60, 0.5); }
+        /* MÜZİK BOTONU */
+        .music-btn { background-color: #2ecc71; border: 2px solid #27ae60; color: white; width: 65px; height: 65px; border-radius: 50%; font-size: 28px; display: inline-flex; justify-content: center; align-items: center; transition: all 0.2s ease; }
+        .music-btn:hover { transform: scale(1.1); background-color: #27ae60; }
+        .music-btn.playing { background-color: #e74c3c; border-color: #c0392b; }
+        .music-btn.playing:hover { background-color: #c0392b; }
 
     </style>
 </head>
@@ -605,7 +276,6 @@
             <div class="header-icon" onclick="openMusicModal()">🌸</div>
             <div class="header-title" onclick="navigate('main-page')">Week Product</div>
         </div>
-        
         <div class="header-right">
             <button class="header-btn" onclick="toggleTheme()" title="Temayı Değiştir">🌓</button>
         </div>
@@ -619,84 +289,45 @@
 
             <div class="cards-wrapper">
                 
+                <!-- KART 1 -->
                 <div class="card-box">
                     <div class="card-tooltip">
                         <div class="tooltip-title">İndirmeler</div>
                         <div class="tooltip-desc">Harita ve Dosyalar</div>
                         <div class="tooltip-char-wrapper">
-                            <div class="mc-char">
-                                <div class="c1-head"></div>
-                                <div class="c1-eyes"></div>
-                                <div class="c1-pupils"></div>
-                                <div class="c1-body"></div>
-                                <div class="c1-hood"></div>
-                                <div class="c1-strings"></div>
-                            </div>
+                            <div class="mc-char"><div class="c1-head"></div><div class="c1-eyes"></div><div class="c1-pupils"></div><div class="c1-body"></div><div class="c1-hood"></div><div class="c1-strings"></div></div>
                         </div>
                     </div>
                     <div class="card card-1" onclick="navigate('download-page')">
-                        <div class="mc-char">
-                            <div class="c1-head"></div>
-                            <div class="c1-eyes"></div>
-                            <div class="c1-pupils"></div>
-                            <div class="c1-body"></div>
-                            <div class="c1-hood"></div>
-                            <div class="c1-strings"></div>
-                        </div>
+                        <div class="mc-char"><div class="c1-head"></div><div class="c1-eyes"></div><div class="c1-pupils"></div><div class="c1-body"></div><div class="c1-hood"></div><div class="c1-strings"></div></div>
                     </div>
                 </div>
 
+                <!-- KART 2 -->
                 <div class="card-box">
                     <div class="card-tooltip">
                         <div class="tooltip-title">Sosyal Medya</div>
                         <div class="tooltip-desc">Youtube ve Discord</div>
                         <div class="tooltip-char-wrapper">
-                            <div class="mc-char">
-                                <div class="c2-hair-back"></div>
-                                <div class="c2-body"></div>
-                                <div class="c2-head"></div>
-                                <div class="c2-eyes"></div>
-                                <div class="c2-hair-front"></div>
-                            </div>
+                            <div class="mc-char"><div class="c2-hair-back"></div><div class="c2-body"></div><div class="c2-head"></div><div class="c2-eyes"></div><div class="c2-hair-front"></div></div>
                         </div>
                     </div>
                     <div class="card card-2" onclick="navigate('social-page')">
-                        <div class="mc-char">
-                            <div class="c2-hair-back"></div>
-                            <div class="c2-body"></div>
-                            <div class="c2-head"></div>
-                            <div class="c2-eyes"></div>
-                            <div class="c2-hair-front"></div>
-                        </div>
+                        <div class="mc-char"><div class="c2-hair-back"></div><div class="c2-body"></div><div class="c2-head"></div><div class="c2-eyes"></div><div class="c2-hair-front"></div></div>
                     </div>
                 </div>
 
+                <!-- KART 3 (GÜNCELLENDİ) -->
                 <div class="card-box">
                     <div class="card-tooltip">
-                        <div class="tooltip-title">Hedef 30 Gün</div>
-                        <div class="tooltip-desc">İlerlemeni Takip Et</div>
+                        <div class="tooltip-title">Diğer Şeyler...</div>
+                        <div class="tooltip-desc">Eğlence ve İlerleme</div>
                         <div class="tooltip-char-wrapper">
-                            <div class="mc-char">
-                                <div class="c3-hair"></div>
-                                <div class="c3-shirt"></div>
-                                <div class="c3-body"></div>
-                                <div class="c3-head"></div>
-                                <div class="c3-eyes"></div>
-                                <div class="c3-hat"></div>
-                                <div class="c3-hat-eyes"></div>
-                            </div>
+                            <div class="mc-char"><div class="c3-hair"></div><div class="c3-shirt"></div><div class="c3-body"></div><div class="c3-head"></div><div class="c3-eyes"></div><div class="c3-hat"></div><div class="c3-hat-eyes"></div></div>
                         </div>
                     </div>
                     <div class="card card-3" onclick="navigate('goal-page')">
-                        <div class="mc-char">
-                            <div class="c3-hair"></div>
-                            <div class="c3-shirt"></div>
-                            <div class="c3-body"></div>
-                            <div class="c3-head"></div>
-                            <div class="c3-eyes"></div>
-                            <div class="c3-hat"></div>
-                            <div class="c3-hat-eyes"></div>
-                        </div>
+                        <div class="mc-char"><div class="c3-hair"></div><div class="c3-shirt"></div><div class="c3-body"></div><div class="c3-head"></div><div class="c3-eyes"></div><div class="c3-hat"></div><div class="c3-hat-eyes"></div></div>
                     </div>
                 </div>
 
@@ -704,54 +335,65 @@
         </div>
     </div>
 
+    <!-- DİĞER ŞEYLER / HEDEF SAYFASI -->
     <div id="goal-page" class="page">
         <div class="inner-page-content">
-            <h1 class="page-title" id="goal-title">Hedef 30 Gün</h1>
+            <h1 class="page-title">Diğer Şeyler & Hedef</h1>
             
-            <div class="stars-container" id="stars-container"></div>
-            
+            <!-- GERÇEK ZAMANLI HEDEF BARI -->
             <div class="progress-wrapper">
                 <div class="progress-text"><span id="day-counter">0</span> / 30 Gün</div>
                 <div class="progress-bar-bg">
                     <div class="progress-bar-fill" id="goal-bar"></div>
                 </div>
+                <div class="info-note">* İlerleme sistem saatine göre her gün otomatik olarak 1 gün artar. </div>
+                <button onclick="resetProgress()" class="btn-action" style="margin-top: 15px; font-size: 14px; background: #2e3743;">Süreci Sıfırla (Test İçin)</button>
+            </div>
+
+            <!-- EĞLENCE BÖLÜMÜ (YENİ) -->
+            <div class="features-grid">
+                
+                <div class="fun-box">
+                    <h2>🎲 Şanslı Zar</h2>
+                    <div id="dice-result" class="dice">?</div>
+                    <button class="btn-action" onclick="rollDice()">Zar At!</button>
+                </div>
+
+                <div class="fun-box">
+                    <h2>👆 Tıklama Rekoru</h2>
+                    <p style="font-size: 24px; font-weight: bold; margin: 0 0 15px 0; color: var(--white);">Skor: <span id="click-score">0</span></p>
+                    <button class="btn-action" onclick="increaseScore()" style="background-color: var(--card-1); color: #1e2329;">Bana Tıkla!</button>
+                </div>
+
             </div>
         </div>
     </div>
 
+    <!-- İNDİRMELER SAYFASI -->
     <div id="download-page" class="page">
         <div class="inner-page-content">
             <h1 class="page-title">📥 İndirme Linkleri</h1>
             <div class="download-grid">
-                
                 <div class="dl-card">
                     <div class="dl-info">
                         <div class="dl-name">Week.world indir</div>
                         <div class="dl-status">✨ Dünyayı Keşfet</div>
                     </div>
-                    <a href="https://www.mediafire.com/file/thc8x5lwit51jmk/Week.world_Setup.exe/file" class="btn-download" target="_blank">İndir</a>
+                    <a href="https://www.mediafire.com/file/thc8x5lwit51jmk/Week.world_Setup.exe/file" class="btn-action" target="_blank" style="text-decoration:none; background-color: #2ecc71;">İndir</a>
                 </div>
-
             </div>
         </div>
     </div>
 
+    <!-- SOSYAL MEDYA SAYFASI -->
     <div id="social-page" class="page">
         <div class="inner-page-content">
             <h1 class="page-title">🌐 Sosyal Bağlantılar</h1>
             <div class="social-list">
-                <a href="https://www.youtube.com/@xweeks2hd" target="_blank" class="social-item">
-                    <span class="social-icon">📺</span> YouTube Kanalım
-                </a>
-
-                <div class="social-item" onclick="openModal('Discord')">
-                    <span class="social-icon">💬</span> Discord Adresim
-                </div>
-
+                <a href="https://www.youtube.com/@xweeks2hd" target="_blank" class="social-item"><span class="social-icon">📺</span> YouTube Kanalım</a>
+                <div class="social-item" onclick="openModal('Discord')"><span class="social-icon">💬</span> Discord Adresim</div>
                 <div class="social-item bot-container">
-                    <div style="display:flex; align-items:center; width: 100%;">
-                        <span class="social-icon">🤖</span> Discord Botlarım
-                    </div>
+                    <div style="display:flex; align-items:center; width: 100%;"><span class="social-icon">🤖</span> Discord Botlarım</div>
                     <ul class="bot-list">
                         <li class="bot-li"><span class="bot-icon">⚔️</span> WeekSMP <span class="verified">✔️</span></li>
                         <li class="bot-li"><span class="bot-icon">🛠️</span> Week Creator <span class="verified">✔️</span></li>
@@ -762,6 +404,7 @@
         </div>
     </div>
 
+    <!-- MODALLAR -->
     <div id="custom-modal" class="modal-overlay" onclick="closeModal()">
         <div class="modal-box" onclick="event.stopPropagation()">
             <span class="close-btn" onclick="closeModal()">&times;</span>
@@ -783,13 +426,9 @@
     </footer>
 
     <script>
-        let currentDay = 0;
-        let goalInterval = null;
-
+        // SAYFA YÖNLENDİRME
         function navigate(pageId) {
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
-            });
+            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
             document.getElementById(pageId).classList.add('active');
 
             if(pageId === 'main-page') {
@@ -798,89 +437,98 @@
                 text.offsetHeight; 
                 text.style.animation = 'slideUpIn 0.8s ease forwards';
             }
-            
-            // 3. Butona Tıklanınca Hedef Sayfasındaki Bar Animasyonu Başlar
             if(pageId === 'goal-page') {
-                startGoalAnimation();
+                updateGoalProgress(); // Sayfaya girince barı gerçek zamanlı hesapla
             }
         }
 
-        // HEDEF BAR ANİMASYON FONKSİYONU
-        function startGoalAnimation() {
-            if(goalInterval) return; // Birden fazla kez çalışmasını önler
+        // GERÇEK ZAMANLI HEDEF BARI MANTIĞI
+        function updateGoalProgress() {
+            // LocalStorage'da başlangıç tarihi var mı kontrol et
+            let startDateStr = localStorage.getItem('weekProductStartDate');
             
+            if (!startDateStr) {
+                // Yoksa şu anki tarihi kaydet
+                startDateStr = new Date().toISOString();
+                localStorage.setItem('weekProductStartDate', startDateStr);
+            }
+
+            const startDate = new Date(startDateStr);
+            const currentDate = new Date();
+            
+            // Geçen süreyi milisaniye cinsinden hesapla, sonra güne çevir
+            const diffTime = Math.abs(currentDate - startDate);
+            const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24)); 
+            
+            let displayDay = diffDays;
+            
+            // 30'u geçmemesi için sınır koy
+            if (displayDay > 30) {
+                displayDay = 30;
+            }
+
             const barFill = document.getElementById('goal-bar');
             const counter = document.getElementById('day-counter');
-            const title = document.getElementById('goal-title');
-            const starsContainer = document.getElementById('stars-container');
-            
-            // Animasyon simulasyonu (Her 120ms'de bir 1 gün artar)
-            goalInterval = setInterval(() => {
-                currentDay++;
-                if (currentDay <= 30) {
-                    barFill.style.width = (currentDay / 30 * 100) + '%';
-                    counter.innerText = currentDay;
-                } else {
-                    // 30 Gün Dolduğunda Sıfırlama ve Yıldız Ekleme
-                    currentDay = 0;
-                    barFill.style.width = '0%';
-                    counter.innerText = '0';
-                    
-                    // Başlığı güncelle
-                    title.innerText = ".hedef tekrar 30 gün";
-                    
-                    // Sarı Yıldız Ekle
-                    let star = document.createElement('span');
-                    star.innerHTML = '⭐';
-                    star.className = 'star-anim';
-                    starsContainer.appendChild(star);
-                }
-            }, 120); 
+
+            barFill.style.width = (displayDay / 30 * 100) + '%';
+            counter.innerText = displayDay;
         }
 
+        // Test için sıfırlama butonu işlevi
+        function resetProgress() {
+            localStorage.removeItem('weekProductStartDate');
+            updateGoalProgress();
+        }
+
+        // EĞLENCE 1: ZAR ATMA OYUNU
+        function rollDice() {
+            const dice = document.getElementById('dice-result');
+            dice.style.transform = 'rotate(360deg) scale(1.2)';
+            
+            // Animasyon süresi sonrası rastgele sayı
+            setTimeout(() => {
+                const randomNum = Math.floor(Math.random() * 6) + 1;
+                dice.innerText = randomNum;
+                dice.style.transform = 'rotate(0deg) scale(1)';
+            }, 300);
+        }
+
+        // EĞLENCE 2: TIKLAMA REKORU
+        let currentScore = 0;
+        function increaseScore() {
+            currentScore++;
+            document.getElementById('click-score').innerText = currentScore;
+            
+            // Tıkladıkça butonu zıplat
+            const btn = document.querySelector('.fun-box .btn-action');
+            btn.style.transform = 'scale(0.9)';
+            setTimeout(() => btn.style.transform = 'scale(1)', 100);
+        }
+
+        // MODAL VE MÜZİK FONKSİYONLARI (ESKİSİ GİBİ KORUNDU)
         function openModal(type) {
             const modal = document.getElementById('custom-modal');
             const textEl = document.getElementById('modal-content-text');
-            
-            if(type === 'Discord') {
-                textEl.innerHTML = "💬 Discord Kullanıcı Adım: zyleak69";
-            } else if (type === 'Aktif Degil') {
-                textEl.innerHTML = "🚫 Şuanlık Bu Pencere Aktif Değil";
-            }
-            
+            if(type === 'Discord') textEl.innerHTML = "💬 Discord Kullanıcı Adım: zyleak69";
+            else textEl.innerHTML = "🚫 Şuanlık Bu Pencere Aktif Değil";
             modal.classList.add('active');
         }
 
-        function closeModal() {
-            document.getElementById('custom-modal').classList.remove('active');
-        }
-
-        function openMusicModal() {
-            document.getElementById('music-modal').classList.add('active');
-        }
-
-        function closeMusicModal() {
-            document.getElementById('music-modal').classList.remove('active');
-        }
+        function closeModal() { document.getElementById('custom-modal').classList.remove('active'); }
+        function openMusicModal() { document.getElementById('music-modal').classList.add('active'); }
+        function closeMusicModal() { document.getElementById('music-modal').classList.remove('active'); }
 
         function toggleMusic() {
             const audio = document.getElementById('bg-music');
             const btn = document.getElementById('music-control-btn');
-            
             if (audio.paused) {
-                audio.play();
-                btn.innerHTML = "⏸️";
-                btn.classList.add('playing');
+                audio.play(); btn.innerHTML = "⏸️"; btn.classList.add('playing');
             } else {
-                audio.pause();
-                btn.innerHTML = "▶️";
-                btn.classList.remove('playing');
+                audio.pause(); btn.innerHTML = "▶️"; btn.classList.remove('playing');
             }
         }
 
-        function toggleTheme() {
-            document.body.classList.toggle('light-theme');
-        }
+        function toggleTheme() { document.body.classList.toggle('light-theme'); }
     </script>
 </body>
 </html>
