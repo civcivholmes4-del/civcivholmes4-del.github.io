@@ -24,9 +24,9 @@
             --panel-border: #2e3743;
             --footer-bg: #111418;
             --shadow: rgba(0, 0, 0, 0.4);
-            --star-color: #f1c40f;
         }
 
+        /* Aydınlık Tema Değişkenleri */
         body.light-theme {
             --bg-main: #f0f3f6;
             --bg-header: #ffffff;
@@ -38,278 +38,391 @@
             --shadow: rgba(0, 0, 0, 0.1);
         }
 
+        /* ÖZEL KURSOR */
         body {
-            margin: 0; padding: 0; font-family: 'Pixelify Sans', sans-serif;
-            background-color: var(--bg-main); color: var(--text-main);
-            height: 100vh; display: flex; flex-direction: column; overflow: hidden;
+            margin: 0;
+            padding: 0;
+            font-family: 'Pixelify Sans', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
             transition: background-color 0.3s, color 0.3s;
             cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M4 2L4 22L9 16L16 16Z" fill="%23ba273f" stroke="%23ffffff" stroke-width="1.5" stroke-linejoin="round"/></svg>'), auto;
         }
 
-        a, button, .card, .header-icon, .header-title, .social-item, .close-btn, .verified, [onclick], .mg-btn {
+        a, button, .card, .header-icon, .header-title, .social-item, .close-btn, .verified, [onclick] {
             cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10 2a2 2 0 0 1 2 2v4h1a2 2 0 0 1 2 2v1h1a2 2 0 0 1 2 2v5a5 5 0 0 1-5 5h-4a5 5 0 0 1-5-5V8a2 2 0 0 1 2-2h1V4a2 2 0 0 1 2-2z" fill="%23ba273f" stroke="%23ffffff" stroke-width="1"/></svg>'), pointer !important;
         }
 
-        /* HEADER & FOOTER */
+        /* HEADER */
         header {
-            background-color: var(--bg-header); height: 65px; display: flex;
-            justify-content: space-between; align-items: center; padding: 0 25px;
-            box-sizing: border-box; border-bottom: 2px solid var(--panel-border); z-index: 100;
+            background-color: var(--bg-header);
+            height: 65px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 25px;
+            box-sizing: border-box;
+            border-bottom: 2px solid var(--panel-border);
+            z-index: 100;
+            box-shadow: 0 4px 12px var(--shadow);
+            transition: background-color 0.3s, border-color 0.3s;
         }
-        .header-left { display: flex; align-items: center; }
-        .header-icon { color: #ff69b4; font-size: 24px; margin-right: 12px; background-color: var(--panel-border); padding: 8px; border-radius: 8px; transition: 0.3s; }
-        .header-icon:hover { transform: scale(1.1); }
-        .header-title { color: var(--text-pink); font-size: 26px; font-weight: 700; }
+
+        .header-left { display: flex; align-items: center; text-decoration: none; cursor: pointer; }
+        .header-icon {
+            color: #ff69b4; font-size: 24px; margin-right: 12px;
+            background-color: var(--panel-border); padding: 8px; border-radius: 8px; transition: 0.3s;
+        }
+        .header-icon:hover { transform: scale(1.1); box-shadow: 0 0 12px var(--text-pink); }
+
+        .header-title {
+            color: var(--text-pink); font-size: 26px; font-weight: 700;
+            letter-spacing: 1px; text-shadow: 1px 1px 0px rgba(0,0,0,0.2);
+        }
+
         .header-right { display: flex; gap: 10px; }
-        .header-btn { background-color: var(--panel-border); border: none; color: var(--text-main); width: 45px; height: 45px; border-radius: 10px; font-size: 20px; transition: 0.2s; }
+        .header-btn {
+            background-color: var(--panel-border); border: none; color: var(--text-main);
+            width: 45px; height: 45px; border-radius: 10px; font-size: 20px;
+            display: flex; justify-content: center; align-items: center; transition: 0.2s;
+        }
         .header-btn:hover { background-color: var(--text-pink); color: white; transform: translateY(-2px); }
 
-        footer { position: fixed; bottom: 0; width: 100%; display: flex; justify-content: space-between; padding: 12px 25px; box-sizing: border-box; font-size: 14px; background-color: var(--footer-bg); border-top: 1px solid var(--panel-border); z-index: 10; }
-        .footer-link { color: var(--white); text-decoration: none; transition: 0.2s; }
-        .footer-link:hover { color: var(--text-pink); }
+        /* FOOTER */
+        footer {
+            position: fixed; bottom: 0; width: 100%; display: flex; justify-content: space-between;
+            padding: 12px 25px; box-sizing: border-box; font-size: 14px;
+            background-color: var(--footer-bg); border-top: 1px solid var(--panel-border); z-index: 10;
+        }
+        .footer-link { color: var(--white); text-decoration: none; transition: 0.2s; display: inline-block; }
+        .footer-link:hover { color: var(--text-pink); transform: translateY(-2px); }
 
-        /* PAGES */
+        /* SAYFA YAPISI */
         .page { display: none; flex: 1; width: 100%; height: 100%; animation: fadeIn 0.4s ease forwards; }
         .page.active { display: flex; }
         #main-page { justify-content: center; align-items: center; padding-bottom: 60px; }
         .main-container { display: flex; justify-content: center; align-items: center; gap: 60px; width: 100%; max-width: 1100px; }
-        .generate-text { color: var(--text-pink); font-size: 48px; font-weight: 700; opacity: 0; animation: slideUpIn 0.8s ease forwards; text-shadow: 3px 3px 0px rgba(0,0,0,0.3); }
+
+        .generate-text {
+            color: var(--text-pink); font-size: 48px; font-weight: 700;
+            letter-spacing: 2px; transform: translateY(30px); opacity: 0;
+            animation: slideUpIn 0.8s ease forwards; text-shadow: 3px 3px 0px rgba(0,0,0,0.3); white-space: nowrap;
+        }
 
         @keyframes slideUpIn { to { transform: translateY(0); opacity: 1; } }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        /* KARTLAR */
+        /* KARTLAR VE TOOLTİPLER */
         .cards-wrapper { display: flex; gap: 20px; align-items: center; }
         .card-box { position: relative; display: flex; flex-direction: column; align-items: center; }
-        .card-tooltip { position: absolute; bottom: 100%; background: var(--panel-bg); border: 2px solid var(--text-pink); border-radius: 12px; padding: 12px; width: 150px; color: var(--white); text-align: center; opacity: 0; visibility: hidden; transition: 0.4s; box-shadow: 0 8px 20px var(--shadow); z-index: 50; display: flex; flex-direction: column; align-items: center; }
-        .card-box:hover .card-tooltip { opacity: 1; visibility: visible; transform: translateY(-15px); }
-        .tooltip-title { font-weight: 700; color: var(--text-pink); font-size: 16px; }
+        
+        .card-tooltip {
+            position: absolute; bottom: 100%; left: 50%; transform: translate(-50%, 20px);
+            background: var(--panel-bg); border: 2px solid var(--text-pink);
+            border-radius: 12px; padding: 12px; width: 150px; color: var(--white);
+            text-align: center; opacity: 0; visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 8px 20px var(--shadow); z-index: 50; pointer-events: none;
+            display: flex; flex-direction: column; align-items: center;
+        }
+        .card-box:hover .card-tooltip { opacity: 1; visibility: visible; transform: translate(-50%, -15px); }
+
+        .tooltip-title { font-weight: 700; color: var(--text-pink); margin-bottom: 3px; font-size: 16px; white-space: nowrap; }
         .tooltip-desc { color: #88929e; font-size: 13px; margin-bottom: 8px; }
-        .card { width: 165px; height: 165px; border-radius: 16px; box-shadow: 0 8px 25px var(--shadow); transition: transform 0.3s; display: flex; justify-content: center; align-items: flex-end; overflow: hidden; }
-        .card:hover { transform: scale(1.08) !important; }
+        .tooltip-char-wrapper { transform: scale(0.45); transform-origin: top center; height: 55px; width: 100px; }
+
+        .card {
+            width: 165px; height: 165px; border-radius: 16px; position: relative;
+            box-shadow: 0 8px 25px var(--shadow); transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex; justify-content: center; align-items: flex-end; overflow: hidden;
+        }
+        .card:hover { transform: scale(1.08) !important; box-shadow: 0 12px 30px var(--shadow); }
+
         .card-1 { background: var(--card-1); transform: translateY(15px); }
         .card-2 { background: var(--card-2); transform: translateY(-25px); }
         .card-3 { background: var(--card-3); transform: translateY(15px); }
 
-        .inner-page-content { width: 100%; max-width: 900px; margin: 40px auto; padding: 30px; text-align: center; overflow-y: auto; max-height: calc(100vh - 150px); }
+        /* MİNECRAFT KARAKTERLERİ */
+        .mc-char { width: 100px; height: 120px; position: relative; }
+        /* C1 */
+        .c1-head { position: absolute; bottom: 60px; left: 15px; width: 70px; height: 70px; background: #f1c27d; border-radius: 2px; box-shadow: inset 0 15px 0 #d9a05b; }
+        .c1-eyes { position: absolute; bottom: 85px; left: 30px; width: 10px; height: 10px; background: #fff; box-shadow: 30px 0 0 #fff; }
+        .c1-pupils { position: absolute; bottom: 85px; left: 34px; width: 6px; height: 10px; background: #71b48b; box-shadow: 30px 0 0 #71b48b; }
+        .c1-hood { position: absolute; bottom: 60px; left: 5px; width: 90px; height: 80px; background: #86e0a4; opacity: 0.9; clip-path: polygon(0 20%, 10% 0, 90% 0, 100% 20%, 100% 100%, 80% 100%, 80% 20%, 20% 20%, 20% 100%, 0 100%); }
+        .c1-body { position: absolute; bottom: 0; left: 10px; width: 80px; height: 60px; background: #a5f0c5; }
+        .c1-strings { position: absolute; bottom: 20px; left: 25px; width: 4px; height: 40px; background: #2a5a3f; box-shadow: 46px 0 0 #2a5a3f; }
+        /* C2 */
+        .c2-hair-back { position: absolute; bottom: 40px; left: 10px; width: 80px; height: 90px; background: #e5cdb2; }
+        .c2-head { position: absolute; bottom: 60px; left: 20px; width: 60px; height: 60px; background: #fff0e5; }
+        .c2-eyes { position: absolute; bottom: 80px; left: 25px; width: 15px; height: 8px; background: #96a5c1; box-shadow: 35px 0 0 #96a5c1; }
+        .c2-hair-front { position: absolute; bottom: 90px; left: 10px; width: 80px; height: 40px; background: #e5cdb2; clip-path: polygon(0 0, 100% 0, 100% 100%, 70% 80%, 30% 80%, 0 100%); }
+        .c2-body { position: absolute; bottom: 0; left: 15px; width: 70px; height: 60px; background: repeating-linear-gradient(180deg, #ffd6e0, #ffd6e0 15px, #fff 15px, #fff 30px); }
+        /* C3 */
+        .c3-head { position: absolute; bottom: 60px; left: 20px; width: 60px; height: 60px; background: #ffe4cc; }
+        .c3-hair { position: absolute; bottom: 60px; left: 15px; width: 70px; height: 60px; background: #4a4a4a; clip-path: polygon(0 100%, 15% 40%, 85% 40%, 100% 100%); }
+        .c3-hat { position: absolute; bottom: 100px; left: 10px; width: 80px; height: 40px; background: #719b6a; border-radius: 4px 4px 0 0; }
+        .c3-hat-eyes { position: absolute; bottom: 125px; left: 20px; width: 12px; height: 12px; background: #ffb6c1; border-radius: 50%; box-shadow: 48px 0 0 #ffb6c1; }
+        .c3-eyes { position: absolute; bottom: 80px; left: 25px; width: 10px; height: 8px; background: #222; box-shadow: 40px 0 0 #222; }
+        .c3-body { position: absolute; bottom: 0; left: 15px; width: 70px; height: 60px; background: #93b28f; }
+        .c3-shirt { position: absolute; bottom: 0; left: 25px; width: 50px; height: 60px; background: #e0e0e0; }
+
+        /* PENCERELER */
+        .inner-page-content {
+            width: 100%; max-width: 900px; margin: 40px auto; padding: 30px;
+            text-align: center; overflow-y: auto; max-height: calc(100vh - 150px);
+            background: rgba(255, 255, 255, 0.01); backdrop-filter: blur(10px); border-radius: 20px;
+        }
+
         .inner-page-content::-webkit-scrollbar { width: 8px; }
+        .inner-page-content::-webkit-scrollbar-track { background: transparent; }
         .inner-page-content::-webkit-scrollbar-thumb { background: var(--panel-border); border-radius: 10px; }
+        .inner-page-content::-webkit-scrollbar-thumb:hover { background: var(--text-pink); }
 
-        /* YENİ SHORTS OYUN KONSOLU TASARIMI */
-        .goal-container {
-            max-width: 450px; margin: 0 auto;
+        .page-title {
+            color: var(--white); font-size: 38px; font-weight: 700; margin-bottom: 35px;
+            display: inline-block; border-bottom: 3px solid var(--text-pink); padding-bottom: 8px;
+        }
+
+        /* YENİ "DİĞER ŞEYLER" SAYFASI TASARIMI */
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            max-width: 800px;
+            margin: 30px auto 0;
+        }
+
+        .progress-wrapper {
             background: var(--panel-bg); border: 2px solid var(--panel-border);
-            border-radius: 24px; overflow: hidden; box-shadow: 0 10px 30px var(--shadow);
-            display: flex; flex-direction: column;
+            border-radius: 16px; padding: 35px; box-shadow: 0 4px 12px var(--shadow);
+            max-width: 800px; margin: 0 auto;
         }
+        .progress-text { font-size: 26px; color: var(--white); margin-bottom: 20px; font-weight: 600; }
+        .progress-bar-bg { width: 100%; height: 35px; background: rgba(0,0,0,0.3); border-radius: 20px; overflow: hidden; border: 2px solid var(--panel-border); }
+        .progress-bar-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #e9445e, #ff69b4); border-radius: 20px; transition: width 0.5s ease; }
+        .info-note { font-size: 14px; color: #88929e; margin-top: 15px; font-style: italic; }
 
-        /* 14 GÜNLÜK HEDEF BARI (HER ZAMAN ÜSTTE) */
-        .goal-header {
-            background: #111418; padding: 20px; border-bottom: 2px solid var(--panel-border);
-            z-index: 10; position: relative;
-        }
-        .progress-text { font-size: 20px; color: var(--white); font-weight: 600; display: flex; justify-content: space-between; margin-bottom: 15px; }
-        .stars { color: var(--star-color); font-size: 22px; text-shadow: 0 0 10px rgba(241, 196, 15, 0.5); }
-        .progress-bar-bg { width: 100%; height: 20px; background: rgba(0,0,0,0.5); border-radius: 10px; overflow: hidden; }
-        .progress-bar-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #e9445e, #ff69b4); transition: width 0.5s ease; }
-        .swipe-hint { font-size: 12px; color: #88929e; margin-top: 10px; opacity: 0.8; animation: pulse 2s infinite; }
-        @keyframes pulse { 0% {opacity: 0.5;} 50% {opacity: 1;} 100% {opacity: 0.5;} }
-
-        /* SHORTS KAYDIRMA ALANI */
-        .shorts-wrapper {
-            position: relative; width: 100%; height: 400px;
-            overflow: hidden; background: var(--bg-main);
-        }
-
-        .slide {
-            position: absolute; width: 100%; height: 100%;
+        /* EĞLENCE KUTULARI */
+        .fun-box {
+            background: var(--panel-bg); border: 2px solid var(--panel-border);
+            border-radius: 16px; padding: 25px; box-shadow: 0 4px 12px var(--shadow);
             display: flex; flex-direction: column; align-items: center; justify-content: center;
-            top: 100%; transition: top 0.4s ease-in-out, opacity 0.3s; opacity: 0;
-            padding: 20px; box-sizing: border-box;
         }
-        .slide.active { top: 0; opacity: 1; z-index: 2; }
-        .slide.prev { top: -100%; opacity: 0; z-index: 1; }
-        .slide.next { top: 100%; opacity: 0; z-index: 1; }
-
-        /* MİNİ OYUN STİLLERİ */
-        .mg-title { color: var(--card-1); font-size: 24px; margin-bottom: 20px; }
-        .mg-btn { background-color: var(--text-pink); color: #fff; border: none; padding: 12px 20px; border-radius: 10px; font-size: 18px; font-family: 'Pixelify Sans'; transition: 0.2s; margin: 5px; }
-        .mg-btn:hover { background-color: #ba273f; transform: scale(1.05); }
-        .mg-display { font-size: 40px; font-weight: bold; margin-bottom: 20px; min-height: 50px; color: var(--white); }
+        .fun-box h2 { color: var(--card-1); font-size: 22px; margin-top: 0; margin-bottom: 15px; }
         
-        .rps-btn { font-size: 30px; padding: 10px 15px; background: var(--panel-border); border-radius: 10px; border:none; margin: 5px; }
-        .rps-btn:hover { background: var(--card-1); }
-        .color-box { width: 60px; height: 60px; display: inline-block; margin: 10px; border-radius: 10px; cursor: pointer; border: 3px solid transparent; }
-        .color-box:hover { transform: scale(1.1); border-color: white; }
-        .box-grid { display: flex; gap: 10px; }
+        /* Şanslı Zar */
+        .dice {
+            width: 60px; height: 60px; background: var(--white); color: #222;
+            font-size: 36px; font-weight: bold; display: flex; align-items: center; justify-content: center;
+            border-radius: 12px; margin-bottom: 15px; transition: transform 0.3s ease; border: 3px solid var(--text-pink);
+        }
 
-        /* İndirmeler, Sosyal, vb. kodları yer tutucu (eski stili korundu) */
-        .download-grid { display: grid; grid-template-columns: 1fr; gap: 20px; max-width: 500px; margin: 0 auto; }
-        .dl-card { background-color: var(--panel-bg); border: 2px solid var(--panel-border); border-radius: 16px; padding: 24px; display: flex; justify-content: space-between; align-items: center; }
+        /* Buton Stili */
+        .btn-action {
+            background-color: var(--text-pink); color: #fff; border: none; padding: 12px 20px;
+            border-radius: 10px; font-size: 18px; font-weight: 600; font-family: 'Pixelify Sans', sans-serif;
+            transition: all 0.2s;
+        }
+        .btn-action:hover { background-color: #ba273f; transform: scale(1.05); }
+
+        /* İndirmeler ve Sosyal */
+        .download-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .dl-card { background-color: var(--panel-bg); border: 2px solid var(--panel-border); border-radius: 16px; padding: 24px; display: flex; justify-content: space-between; align-items: center; transition: all 0.3s ease; }
+        .dl-card:hover { border-color: var(--card-1); transform: translateY(-4px); }
+        .dl-info { text-align: left; }
+        .dl-name { font-size: 22px; font-weight: 600; color: var(--white); margin-bottom: 4px; }
+        .dl-status { font-size: 15px; color: #88929e; }
+
         .social-list { display: flex; flex-direction: column; gap: 15px; align-items: center; }
-        .social-item { background-color: var(--panel-bg); width: 100%; max-width: 580px; padding: 20px; border-radius: 16px; color: var(--white); font-size: 22px; display: flex; align-items: center; border: 2px solid var(--panel-border); text-decoration: none; }
+        .social-item { background-color: var(--panel-bg); width: 100%; max-width: 580px; padding: 20px 25px; border-radius: 16px; text-align: left; text-decoration: none; color: var(--white); font-size: 22px; display: flex; align-items: center; border: 2px solid var(--panel-border); transition: all 0.3s; }
+        .social-item:hover { border-color: var(--text-pink); transform: translateY(-3px) scale(1.01); }
+        .social-icon { font-size: 30px; margin-right: 18px; }
+
+        .bot-container { flex-direction: column; align-items: flex-start; cursor: default; }
+        .bot-container:hover { border-color: var(--panel-border); transform: none; box-shadow: none; }
+        .bot-list { list-style: none; padding: 0; margin-top: 15px; width: 100%; background: rgba(0,0,0,0.15); border-radius: 10px; padding: 5px 15px; box-sizing: border-box; }
+        .bot-li { padding: 12px 0; font-size: 19px; display: flex; align-items: center; border-bottom: 1px dashed var(--panel-border); }
+        .bot-li:last-child { border-bottom: none; }
+        .bot-icon { margin-right: 12px; }
+        .verified { color: #2ecc71; margin-left: auto; }
+
+        /* MODAL */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); backdrop-filter: blur(8px); display: none; justify-content: center; align-items: center; z-index: 1000; opacity: 0; transition: 0.3s; }
+        .modal-overlay.active { display: flex; opacity: 1; }
+        .modal-box { background: var(--panel-bg); padding: 45px; border-radius: 20px; border: 3px solid var(--text-pink); text-align: center; transform: scale(0.85); transition: 0.3s; position: relative; min-width: 320px; }
+        .modal-overlay.active .modal-box { transform: scale(1); }
+        .modal-text { font-size: 26px; color: var(--white); margin: 0 0 20px 0; }
+        .close-btn { position: absolute; top: 10px; right: 15px; font-size: 28px; color: #88929e; transition: 0.2s; }
+        .close-btn:hover { color: var(--text-pink); }
+
+        /* MÜZİK BOTONU */
+        .music-btn { background-color: #2ecc71; border: 2px solid #27ae60; color: white; width: 65px; height: 65px; border-radius: 50%; font-size: 28px; display: inline-flex; justify-content: center; align-items: center; transition: all 0.2s ease; }
+        .music-btn:hover { transform: scale(1.1); background-color: #27ae60; }
+        .music-btn.playing { background-color: #e74c3c; border-color: #c0392b; }
+        .music-btn.playing:hover { background-color: #c0392b; }
+
     </style>
 </head>
 <body>
 
+    <audio id="bg-music" src="moogcity2.mp3" loop></audio>
+
     <header>
         <div class="header-left">
-            <div class="header-icon">🌸</div>
+            <div class="header-icon" onclick="openMusicModal()">🌸</div>
             <div class="header-title" onclick="navigate('main-page')">Week Product</div>
         </div>
         <div class="header-right">
-            <button class="header-btn" onclick="toggleTheme()">🌓</button>
+            <button class="header-btn" onclick="toggleTheme()" title="Temayı Değiştir">🌓</button>
         </div>
     </header>
 
     <div id="main-page" class="page active">
         <div class="main-container">
-            <div class="text-section"><div class="generate-text">İstediğini Oluştur!</div></div>
+            <div class="text-section">
+                <div class="generate-text">İstediğini Oluştur!</div>
+            </div>
+
             <div class="cards-wrapper">
-                <div class="card-box" onclick="navigate('download-page')">
-                    <div class="card-tooltip"><div class="tooltip-title">İndirmeler</div></div>
-                    <div class="card card-1"></div>
+                
+                <!-- KART 1 -->
+                <div class="card-box">
+                    <div class="card-tooltip">
+                        <div class="tooltip-title">İndirmeler</div>
+                        <div class="tooltip-desc">Harita ve Dosyalar</div>
+                        <div class="tooltip-char-wrapper">
+                            <div class="mc-char"><div class="c1-head"></div><div class="c1-eyes"></div><div class="c1-pupils"></div><div class="c1-body"></div><div class="c1-hood"></div><div class="c1-strings"></div></div>
+                        </div>
+                    </div>
+                    <div class="card card-1" onclick="navigate('download-page')">
+                        <div class="mc-char"><div class="c1-head"></div><div class="c1-eyes"></div><div class="c1-pupils"></div><div class="c1-body"></div><div class="c1-hood"></div><div class="c1-strings"></div></div>
+                    </div>
                 </div>
-                <div class="card-box" onclick="navigate('social-page')">
-                    <div class="card-tooltip"><div class="tooltip-title">Sosyal Medya</div></div>
-                    <div class="card card-2"></div>
+
+                <!-- KART 2 -->
+                <div class="card-box">
+                    <div class="card-tooltip">
+                        <div class="tooltip-title">Sosyal Medya</div>
+                        <div class="tooltip-desc">Youtube ve Discord</div>
+                        <div class="tooltip-char-wrapper">
+                            <div class="mc-char"><div class="c2-hair-back"></div><div class="c2-body"></div><div class="c2-head"></div><div class="c2-eyes"></div><div class="c2-hair-front"></div></div>
+                        </div>
+                    </div>
+                    <div class="card card-2" onclick="navigate('social-page')">
+                        <div class="mc-char"><div class="c2-hair-back"></div><div class="c2-body"></div><div class="c2-head"></div><div class="c2-eyes"></div><div class="c2-hair-front"></div></div>
+                    </div>
                 </div>
-                <div class="card-box" onclick="navigate('goal-page')">
-                    <div class="card-tooltip"><div class="tooltip-title">Diğer Şeyler...</div><div class="tooltip-desc">Hedef ve 10 Oyun</div></div>
-                    <div class="card card-3"></div>
+
+                <!-- KART 3 (GÜNCELLENDİ) -->
+                <div class="card-box">
+                    <div class="card-tooltip">
+                        <div class="tooltip-title">Diğer Şeyler...</div>
+                        <div class="tooltip-desc">Eğlence ve İlerleme</div>
+                        <div class="tooltip-char-wrapper">
+                            <div class="mc-char"><div class="c3-hair"></div><div class="c3-shirt"></div><div class="c3-body"></div><div class="c3-head"></div><div class="c3-eyes"></div><div class="c3-hat"></div><div class="c3-hat-eyes"></div></div>
+                        </div>
+                    </div>
+                    <div class="card card-3" onclick="navigate('goal-page')">
+                        <div class="mc-char"><div class="c3-hair"></div><div class="c3-shirt"></div><div class="c3-body"></div><div class="c3-head"></div><div class="c3-eyes"></div><div class="c3-hat"></div><div class="c3-hat-eyes"></div></div>
+                    </div>
                 </div>
+
             </div>
         </div>
     </div>
 
-    <!-- DİĞER ŞEYLER: SHORTS VE HEDEF SAYFASI -->
+    <!-- DİĞER ŞEYLER / HEDEF SAYFASI -->
     <div id="goal-page" class="page">
         <div class="inner-page-content">
+            <h1 class="page-title">Diğer Şeyler & Hedef</h1>
             
-            <div class="goal-container">
-                <!-- HEDEF BARI (SABİT ÜST KISIM) -->
-                <div class="goal-header">
-                    <div class="progress-text">
-                        <span>Hedef: <span id="day-counter">0</span> / 14 Gün</span>
-                        <span class="stars">⭐ <span id="star-counter">0</span></span>
-                    </div>
-                    <div class="progress-bar-bg">
-                        <div class="progress-bar-fill" id="goal-bar"></div>
-                    </div>
-                    <div class="swipe-hint">↕ Fare tekerleğiyle veya kaydırarak oyun değiştir ↕</div>
+            <!-- GERÇEK ZAMANLI HEDEF BARI -->
+            <div class="progress-wrapper">
+                <div class="progress-text"><span id="day-counter">0</span> / 30 Gün</div>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" id="goal-bar"></div>
                 </div>
-
-                <!-- 10 MİNİ OYUNLUK SHORTS ALANI -->
-                <div class="shorts-wrapper" id="shorts-slider">
-                    
-                    <!-- Oyun 1: Zar -->
-                    <div class="slide active">
-                        <h2 class="mg-title">🎲 Şanslı Zar</h2>
-                        <div class="mg-display" id="mg1-res">?</div>
-                        <button class="mg-btn" onclick="mgDice()">Zar At</button>
-                    </div>
-
-                    <!-- Oyun 2: Tıklama -->
-                    <div class="slide next">
-                        <h2 class="mg-title">👆 Tıklama Rekoru</h2>
-                        <div class="mg-display">Skor: <span id="mg2-res">0</span></div>
-                        <button class="mg-btn" onclick="mgClick()">Bana Tıkla!</button>
-                    </div>
-
-                    <!-- Oyun 3: Taş Kağıt Makas -->
-                    <div class="slide next">
-                        <h2 class="mg-title">✌️ Taş Kağıt Makas</h2>
-                        <div class="mg-display" id="mg3-res" style="font-size:24px;">Seçimini Yap</div>
-                        <div>
-                            <button class="rps-btn" onclick="mgRPS('Taş')">✊</button>
-                            <button class="rps-btn" onclick="mgRPS('Kağıt')">🖐</button>
-                            <button class="rps-btn" onclick="mgRPS('Makas')">✌️</button>
-                        </div>
-                    </div>
-
-                    <!-- Oyun 4: Yazı Tura -->
-                    <div class="slide next">
-                        <h2 class="mg-title">🪙 Yazı mı Tura mı?</h2>
-                        <div class="mg-display" id="mg4-res">?</div>
-                        <button class="mg-btn" onclick="mgCoin()">Havaya At</button>
-                    </div>
-
-                    <!-- Oyun 5: Renk Tahmini -->
-                    <div class="slide next">
-                        <h2 class="mg-title">🎨 Doğru Rengi Bul</h2>
-                        <p style="margin-bottom:15px; color:#88929e;">Hangi kutu <b>Yeşil</b>?</p>
-                        <div class="mg-display" id="mg5-res" style="font-size:20px;"></div>
-                        <div class="box-grid">
-                            <div class="color-box" style="background:#e74c3c;" onclick="mgColor(false)"></div>
-                            <div class="color-box" style="background:#2ecc71;" onclick="mgColor(true)"></div>
-                            <div class="color-box" style="background:#3498db;" onclick="mgColor(false)"></div>
-                        </div>
-                    </div>
-
-                    <!-- Oyun 6: Matematik -->
-                    <div class="slide next">
-                        <h2 class="mg-title">🧮 Hızlı Matematik</h2>
-                        <div class="mg-display" id="mg6-q">7 + 5 = ?</div>
-                        <div>
-                            <button class="mg-btn" onclick="mgMath(11)">11</button>
-                            <button class="mg-btn" onclick="mgMath(12)">12</button>
-                            <button class="mg-btn" onclick="mgMath(13)">13</button>
-                        </div>
-                        <div id="mg6-res" style="margin-top:10px; font-weight:bold;"></div>
-                    </div>
-
-                    <!-- Oyun 7: Şanslı Kutu -->
-                    <div class="slide next">
-                        <h2 class="mg-title">🎁 Yıldızı Bul</h2>
-                        <div class="mg-display" id="mg7-res" style="font-size:20px;">Bir kutu seç!</div>
-                        <div class="box-grid">
-                            <button class="rps-btn" onclick="mgStarBox(0)">📦</button>
-                            <button class="rps-btn" onclick="mgStarBox(1)">📦</button>
-                            <button class="rps-btn" onclick="mgStarBox(2)">📦</button>
-                        </div>
-                    </div>
-
-                    <!-- Oyun 8: Sayı Tahmini -->
-                    <div class="slide next">
-                        <h2 class="mg-title">🔢 Sayı Tahmini (1-5)</h2>
-                        <div class="mg-display" id="mg8-res" style="font-size:24px;">Aklımdan sayı tuttum</div>
-                        <div>
-                            <button class="rps-btn" onclick="mgGuess(1)">1</button>
-                            <button class="rps-btn" onclick="mgGuess(2)">2</button>
-                            <button class="rps-btn" onclick="mgGuess(3)">3</button>
-                            <button class="rps-btn" onclick="mgGuess(4)">4</button>
-                            <button class="rps-btn" onclick="mgGuess(5)">5</button>
-                        </div>
-                    </div>
-
-                    <!-- Oyun 9: Hissiyat Testi (Saniye) -->
-                    <div class="slide next">
-                        <h2 class="mg-title">⏱️ 3 Saniye Testi</h2>
-                        <p style="font-size:14px; color:#88929e;">Başla'ya bas, tam 3 saniye geçince Durdur'a bas!</p>
-                        <div class="mg-display" id="mg9-res" style="font-size:24px;">0.00s</div>
-                        <button class="mg-btn" id="mg9-btn" onclick="mgTimer()">Başla</button>
-                    </div>
-
-                    <!-- Oyun 10: Gizemli Buton -->
-                    <div class="slide next">
-                        <h2 class="mg-title">❓ Gizemli Buton</h2>
-                        <div class="mg-display" id="mg10-res" style="font-size:50px;">😶</div>
-                        <button class="mg-btn" onclick="mgMystery()" style="background:#8e44ad;">Sürpriz Yap</button>
-                    </div>
-
-                </div>
+                <div class="info-note">* İlerleme sistem saatine göre her gün otomatik olarak 1 gün artar. </div>
+                <button onclick="resetProgress()" class="btn-action" style="margin-top: 15px; font-size: 14px; background: #2e3743;">Süreci Sıfırla (Test İçin)</button>
             </div>
 
+            <!-- EĞLENCE BÖLÜMÜ (YENİ) -->
+            <div class="features-grid">
+                
+                <div class="fun-box">
+                    <h2>🎲 Şanslı Zar</h2>
+                    <div id="dice-result" class="dice">?</div>
+                    <button class="btn-action" onclick="rollDice()">Zar At!</button>
+                </div>
+
+                <div class="fun-box">
+                    <h2>👆 Tıklama Rekoru</h2>
+                    <p style="font-size: 24px; font-weight: bold; margin: 0 0 15px 0; color: var(--white);">Skor: <span id="click-score">0</span></p>
+                    <button class="btn-action" onclick="increaseScore()" style="background-color: var(--card-1); color: #1e2329;">Bana Tıkla!</button>
+                </div>
+
+            </div>
         </div>
     </div>
 
-    <!-- Eski İndirmeler ve Sosyal Medya Sayfaları Kısa Tutuldu -->
-    <div id="download-page" class="page"><div class="inner-page-content"><h1 style="color:var(--white);">📥 İndirmeler</h1><div class="download-grid"><div class="dl-card"><span style="color:white; font-size:20px;">Week.world</span><button class="mg-btn">İndir</button></div></div></div></div>
-    <div id="social-page" class="page"><div class="inner-page-content"><h1 style="color:var(--white);">🌐 Sosyal</h1><div class="social-list"><div class="social-item">📺 YouTube Kanalım</div><div class="social-item">💬 Discord</div></div></div></div>
+    <!-- İNDİRMELER SAYFASI -->
+    <div id="download-page" class="page">
+        <div class="inner-page-content">
+            <h1 class="page-title">📥 İndirme Linkleri</h1>
+            <div class="download-grid">
+                <div class="dl-card">
+                    <div class="dl-info">
+                        <div class="dl-name">Week.world indir</div>
+                        <div class="dl-status">✨ Dünyayı Keşfet</div>
+                    </div>
+                    <a href="https://www.mediafire.com/file/thc8x5lwit51jmk/Week.world_Setup.exe/file" class="btn-action" target="_blank" style="text-decoration:none; background-color: #2ecc71;">İndir</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SOSYAL MEDYA SAYFASI -->
+    <div id="social-page" class="page">
+        <div class="inner-page-content">
+            <h1 class="page-title">🌐 Sosyal Bağlantılar</h1>
+            <div class="social-list">
+                <a href="https://www.youtube.com/@xweeks2hd" target="_blank" class="social-item"><span class="social-icon">📺</span> YouTube Kanalım</a>
+                <div class="social-item" onclick="openModal('Discord')"><span class="social-icon">💬</span> Discord Adresim</div>
+                <div class="social-item bot-container">
+                    <div style="display:flex; align-items:center; width: 100%;"><span class="social-icon">🤖</span> Discord Botlarım</div>
+                    <ul class="bot-list">
+                        <li class="bot-li"><span class="bot-icon">⚔️</span> WeekSMP <span class="verified">✔️</span></li>
+                        <li class="bot-li"><span class="bot-icon">🛠️</span> Week Creator <span class="verified">✔️</span></li>
+                        <li class="bot-li"><span class="bot-icon">🔔</span> Week Notifactions <span class="verified">✔️</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODALLAR -->
+    <div id="custom-modal" class="modal-overlay" onclick="closeModal()">
+        <div class="modal-box" onclick="event.stopPropagation()">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <p id="modal-content-text" class="modal-text"></p>
+        </div>
+    </div>
+
+    <div id="music-modal" class="modal-overlay" onclick="closeMusicModal()">
+        <div class="modal-box" onclick="event.stopPropagation()">
+            <span class="close-btn" onclick="closeMusicModal()">&times;</span>
+            <p class="modal-text" style="font-size: 22px; margin-bottom: 25px;">C418'den Moog City 2 parçasını çal</p>
+            <button id="music-control-btn" class="music-btn" onclick="toggleMusic()">▶️</button>
+        </div>
+    </div>
 
     <footer>
-        <a href="#" class="footer-link">View me on GitHub!</a>
-        <a href="#" class="footer-link">Buy me a coffee!</a>
+        <a href="https://github.com/Xweeks0" target="_blank" class="footer-link">View me on GitHub!</a>
+        <a href="https://www.shopier.com/yzbstore#Buildler" target="_blank" class="footer-link">Buy me a coffee!</a>
     </footer>
 
     <script>
@@ -317,164 +430,105 @@
         function navigate(pageId) {
             document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
             document.getElementById(pageId).classList.add('active');
-            if(pageId === 'goal-page') updateUniversalGoal();
-        }
 
-        // TEMA
-        function toggleTheme() { document.body.classList.toggle('light-theme'); }
-
-        // EVRENSEL 14 GÜN VE YILDIZ SİSTEMİ (00:00'da güncellenir)
-        function updateUniversalGoal() {
-            // Evrensel başlangıç tarihi (Örneğin 1 Temmuz 2026, 00:00:00)
-            // Bu tarih sayesinde ilerleme herkes için tamamen aynı ve senkrondur.
-            const epochStartDay = Math.floor(new Date("2026-07-01T00:00:00+03:00").getTime() / 86400000);
-            
-            // Şu anki zamanın UTC+3 (Türkiye) saat dilimindeki gün karşılığı
-            const nowMs = Date.now();
-            const msInUTC3 = nowMs + (3 * 60 * 60 * 1000); 
-            const currentGlobalDay = Math.floor(msInUTC3 / 86400000);
-
-            // Başlangıçtan bugüne geçen gün (Herkeste her gece 00:00'da 1 artar)
-            const diffDays = Math.max(0, currentGlobalDay - epochStartDay);
-            
-            // 14 günlük periyot ve yıldız hesaplaması
-            const stars = Math.floor(diffDays / 14);
-            const cycleDay = diffDays % 14; 
-            
-            // Arayüzü güncelle
-            document.getElementById('day-counter').innerText = cycleDay;
-            document.getElementById('star-counter').innerText = stars;
-            document.getElementById('goal-bar').style.width = (cycleDay / 14 * 100) + '%';
-        }
-
-        // BAŞLANGIÇTA ÇALIŞTIR
-        updateUniversalGoal();
-        setInterval(updateUniversalGoal, 60000); // Her dakika saati kontrol et (00:00'ı yakalamak için)
-
-        // SHORTS KAYDIRMA MANTIĞI
-        const slides = document.querySelectorAll('.slide');
-        const totalSlides = slides.length;
-        let currentSlide = 0;
-        let isScrolling = false;
-
-        function updateSlider() {
-            slides.forEach((slide, index) => {
-                slide.className = 'slide'; // Tüm sınıfları sıfırla
-                if (index === currentSlide) {
-                    slide.classList.add('active');
-                } else if (index === (currentSlide - 1 + totalSlides) % totalSlides) {
-                    slide.classList.add('prev');
-                } else {
-                    slide.classList.add('next');
-                }
-            });
-        }
-
-        const sliderElement = document.getElementById('shorts-slider');
-        
-        // Mouse Tekerleği
-        sliderElement.addEventListener('wheel', (e) => {
-            e.preventDefault(); // Sayfa kaymasını engelle
-            if (isScrolling) return;
-            isScrolling = true;
-            if (e.deltaY > 0) { currentSlide = (currentSlide + 1) % totalSlides; } // Aşağı
-            else { currentSlide = (currentSlide - 1 + totalSlides) % totalSlides; } // Yukarı
-            updateSlider();
-            setTimeout(() => isScrolling = false, 400); // Debounce
-        }, { passive: false });
-
-        // Dokunmatik Kaydırma (Mobil)
-        let touchStartY = 0;
-        sliderElement.addEventListener('touchstart', e => touchStartY = e.touches[0].clientY, {passive: true});
-        sliderElement.addEventListener('touchend', e => {
-            let touchEndY = e.changedTouches[0].clientY;
-            if (isScrolling) return;
-            if (touchStartY - touchEndY > 50) { 
-                currentSlide = (currentSlide + 1) % totalSlides; updateSlider(); 
-            } else if (touchEndY - touchStartY > 50) { 
-                currentSlide = (currentSlide - 1 + totalSlides) % totalSlides; updateSlider(); 
+            if(pageId === 'main-page') {
+                const text = document.querySelector('.generate-text');
+                text.style.animation = 'none';
+                text.offsetHeight; 
+                text.style.animation = 'slideUpIn 0.8s ease forwards';
             }
-        }, {passive: true});
-
-
-        // ================= MİNİ OYUN FONKSİYONLARI =================
-
-        // 1. Zar
-        function mgDice() { document.getElementById('mg1-res').innerText = Math.floor(Math.random() * 6) + 1; }
-        
-        // 2. Tıklama
-        let clickScore = 0;
-        function mgClick() { clickScore++; document.getElementById('mg2-res').innerText = clickScore; }
-        
-        // 3. Taş Kağıt Makas
-        function mgRPS(player) {
-            const bot = ['Taş', 'Kağıt', 'Makas'][Math.floor(Math.random() * 3)];
-            let res = "Berabere!";
-            if ((player==='Taş'&&bot==='Makas') || (player==='Kağıt'&&bot==='Taş') || (player==='Makas'&&bot==='Kağıt')) res = "Kazandın!";
-            else if (player !== bot) res = "Kaybettin!";
-            document.getElementById('mg3-res').innerHTML = `<span style="font-size:16px">Sen: ${player} | Bot: ${bot}</span><br><span style="color:var(--text-pink)">${res}</span>`;
+            if(pageId === 'goal-page') {
+                updateGoalProgress(); // Sayfaya girince barı gerçek zamanlı hesapla
+            }
         }
 
-        // 4. Yazı Tura
-        function mgCoin() { document.getElementById('mg4-res').innerText = Math.random() < 0.5 ? "🪙 Yazı" : "🦅 Tura"; }
+        // GERÇEK ZAMANLI HEDEF BARI MANTIĞI
+        function updateGoalProgress() {
+            // LocalStorage'da başlangıç tarihi var mı kontrol et
+            let startDateStr = localStorage.getItem('weekProductStartDate');
+            
+            if (!startDateStr) {
+                // Yoksa şu anki tarihi kaydet
+                startDateStr = new Date().toISOString();
+                localStorage.setItem('weekProductStartDate', startDateStr);
+            }
 
-        // 5. Renk
-        function mgColor(isCorrect) {
-            const res = document.getElementById('mg5-res');
-            if(isCorrect) { res.innerText = "Doğru Bildin! ✅"; res.style.color = "#2ecc71"; }
-            else { res.innerText = "Yanlış! ❌"; res.style.color = "#e74c3c"; }
-            setTimeout(() => res.innerText = "", 1500);
+            const startDate = new Date(startDateStr);
+            const currentDate = new Date();
+            
+            // Geçen süreyi milisaniye cinsinden hesapla, sonra güne çevir
+            const diffTime = Math.abs(currentDate - startDate);
+            const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24)); 
+            
+            let displayDay = diffDays;
+            
+            // 30'u geçmemesi için sınır koy
+            if (displayDay > 30) {
+                displayDay = 30;
+            }
+
+            const barFill = document.getElementById('goal-bar');
+            const counter = document.getElementById('day-counter');
+
+            barFill.style.width = (displayDay / 30 * 100) + '%';
+            counter.innerText = displayDay;
         }
 
-        // 6. Matematik
-        function mgMath(ans) {
-            const res = document.getElementById('mg6-res');
-            if(ans === 12) { res.innerText = "Tebrikler! ✅"; res.style.color = "#2ecc71"; }
-            else { res.innerText = "Hata! Doğrusu 12. ❌"; res.style.color = "#e74c3c"; }
-            setTimeout(() => res.innerText = "", 1500);
+        // Test için sıfırlama butonu işlevi
+        function resetProgress() {
+            localStorage.removeItem('weekProductStartDate');
+            updateGoalProgress();
         }
 
-        // 7. Şanslı Kutu
-        function mgStarBox(choice) {
-            const starPos = Math.floor(Math.random() * 3);
-            const res = document.getElementById('mg7-res');
-            if(choice === starPos) res.innerHTML = "⭐ Yıldızı Buldun!";
-            else res.innerHTML = "Boş Kutu... 🕸️";
-            setTimeout(() => res.innerHTML = "Bir kutu seç!", 1500);
+        // EĞLENCE 1: ZAR ATMA OYUNU
+        function rollDice() {
+            const dice = document.getElementById('dice-result');
+            dice.style.transform = 'rotate(360deg) scale(1.2)';
+            
+            // Animasyon süresi sonrası rastgele sayı
+            setTimeout(() => {
+                const randomNum = Math.floor(Math.random() * 6) + 1;
+                dice.innerText = randomNum;
+                dice.style.transform = 'rotate(0deg) scale(1)';
+            }, 300);
         }
 
-        // 8. Sayı Tahmini
-        function mgGuess(num) {
-            const botNum = Math.floor(Math.random() * 5) + 1;
-            const res = document.getElementById('mg8-res');
-            if(num === botNum) res.innerText = `Bildin! Sayı ${botNum} idi.`;
-            else res.innerText = `Yanlış! Ben ${botNum} tutmuştum.`;
+        // EĞLENCE 2: TIKLAMA REKORU
+        let currentScore = 0;
+        function increaseScore() {
+            currentScore++;
+            document.getElementById('click-score').innerText = currentScore;
+            
+            // Tıkladıkça butonu zıplat
+            const btn = document.querySelector('.fun-box .btn-action');
+            btn.style.transform = 'scale(0.9)';
+            setTimeout(() => btn.style.transform = 'scale(1)', 100);
         }
 
-        // 9. 3 Saniye Testi
-        let timerStart = 0;
-        let timerRunning = false;
-        function mgTimer() {
-            const btn = document.getElementById('mg9-btn');
-            const res = document.getElementById('mg9-res');
-            if(!timerRunning) {
-                timerStart = Date.now(); timerRunning = true;
-                btn.innerText = "Durdur"; res.innerText = "Zaman akıyor..."; res.style.color = "var(--white)";
+        // MODAL VE MÜZİK FONKSİYONLARI (ESKİSİ GİBİ KORUNDU)
+        function openModal(type) {
+            const modal = document.getElementById('custom-modal');
+            const textEl = document.getElementById('modal-content-text');
+            if(type === 'Discord') textEl.innerHTML = "💬 Discord Kullanıcı Adım: zyleak69";
+            else textEl.innerHTML = "🚫 Şuanlık Bu Pencere Aktif Değil";
+            modal.classList.add('active');
+        }
+
+        function closeModal() { document.getElementById('custom-modal').classList.remove('active'); }
+        function openMusicModal() { document.getElementById('music-modal').classList.add('active'); }
+        function closeMusicModal() { document.getElementById('music-modal').classList.remove('active'); }
+
+        function toggleMusic() {
+            const audio = document.getElementById('bg-music');
+            const btn = document.getElementById('music-control-btn');
+            if (audio.paused) {
+                audio.play(); btn.innerHTML = "⏸️"; btn.classList.add('playing');
             } else {
-                let diff = (Date.now() - timerStart) / 1000;
-                timerRunning = false; btn.innerText = "Tekrar Dene";
-                res.innerText = diff.toFixed(2) + "s";
-                if(Math.abs(diff - 3) < 0.2) res.style.color = "#2ecc71"; // Çok yakın
-                else res.style.color = "#e74c3c";
+                audio.pause(); btn.innerHTML = "▶️"; btn.classList.remove('playing');
             }
         }
 
-        // 10. Gizemli Buton
-        function mgMystery() {
-            const emojis = ["👽", "👻", "🎉", "🔥", "💎", "🍔", "🎸", "🚀", "💥", "🐱"];
-            document.getElementById('mg10-res').innerText = emojis[Math.floor(Math.random() * emojis.length)];
-        }
-
+        function toggleTheme() { document.body.classList.toggle('light-theme'); }
     </script>
 </body>
 </html>
