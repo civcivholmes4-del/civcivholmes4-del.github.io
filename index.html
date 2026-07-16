@@ -187,15 +187,6 @@
             display: inline-block; border-bottom: 3px solid var(--text-pink); padding-bottom: 8px;
         }
 
-        /* YENİ "DİĞER ŞEYLER" SAYFASI TASARIMI */
-        .features-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            max-width: 800px;
-            margin: 30px auto 0;
-        }
-
         .progress-wrapper {
             background: var(--panel-bg); border: 2px solid var(--panel-border);
             border-radius: 16px; padding: 35px; box-shadow: 0 4px 12px var(--shadow);
@@ -206,22 +197,48 @@
         .progress-bar-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #e9445e, #ff69b4); border-radius: 20px; transition: width 0.5s ease; }
         .info-note { font-size: 14px; color: #88929e; margin-top: 15px; font-style: italic; }
 
-        /* EĞLENCE KUTULARI */
+        /* YENİ MİNİGAME SİSTEMİ (SHORTS) */
+        .minigames-wrapper {
+            background: var(--panel-bg); border: 2px solid var(--panel-border);
+            border-radius: 16px; box-shadow: 0 4px 12px var(--shadow);
+            max-width: 450px; margin: 30px auto 0;
+            position: relative; overflow: hidden; display: flex; flex-direction: column;
+        }
+        .mg-header {
+            background: var(--bg-header); color: var(--white);
+            text-align: center; padding: 15px; font-size: 18px; font-weight: 700;
+            border-bottom: 2px solid var(--panel-border); z-index: 10;
+        }
+        .mg-slider-container {
+            height: 300px; overflow: hidden; position: relative; width: 100%;
+            touch-action: none; /* Mobilde kaydırırken sayfanın kaymasını engeller */
+        }
+        .mg-slider {
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            display: flex; flex-direction: column; width: 100%;
+        }
+        .mg-slide {
+            height: 300px; width: 100%; display: flex;
+            justify-content: center; align-items: center; padding: 25px; box-sizing: border-box;
+        }
         .fun-box {
             background: var(--panel-bg); border: 2px solid var(--panel-border);
             border-radius: 16px; padding: 25px; box-shadow: 0 4px 12px var(--shadow);
             display: flex; flex-direction: column; align-items: center; justify-content: center;
+            width: 100%; height: 100%; box-sizing: border-box;
         }
         .fun-box h2 { color: var(--card-1); font-size: 22px; margin-top: 0; margin-bottom: 15px; }
-        
-        /* Şanslı Zar */
+        .mg-hint {
+            text-align: center; color: #88929e; font-size: 13px; padding: 12px;
+            background: var(--bg-header); border-top: 1px solid var(--panel-border);
+        }
+
+        /* Eğlence Buton & Tasarım Stilleri */
         .dice {
             width: 60px; height: 60px; background: var(--white); color: #222;
             font-size: 36px; font-weight: bold; display: flex; align-items: center; justify-content: center;
             border-radius: 12px; margin-bottom: 15px; transition: transform 0.3s ease; border: 3px solid var(--text-pink);
         }
-
-        /* Buton Stili */
         .btn-action {
             background-color: var(--text-pink); color: #fff; border: none; padding: 12px 20px;
             border-radius: 10px; font-size: 18px; font-weight: 600; font-family: 'Pixelify Sans', sans-serif;
@@ -340,32 +357,105 @@
         <div class="inner-page-content">
             <h1 class="page-title">Diğer Şeyler & Hedef</h1>
             
-            <!-- GERÇEK ZAMANLI HEDEF BARI -->
+            <!-- GERÇEK ZAMANLI HEDEF BARI (14 GÜNLÜK) -->
             <div class="progress-wrapper">
-                <div class="progress-text"><span id="day-counter">0</span> / 30 Gün</div>
+                <div class="progress-text"><span id="day-counter">0</span> / 14 Gün <span id="star-display"></span></div>
                 <div class="progress-bar-bg">
                     <div class="progress-bar-fill" id="goal-bar"></div>
                 </div>
-                <div class="info-note">* İlerleme sistem saatine göre her gün otomatik olarak 1 gün artar. </div>
-                <button onclick="resetProgress()" class="btn-action" style="margin-top: 15px; font-size: 14px; background: #2e3743;">Süreci Sıfırla (Test İçin)</button>
+                <div class="info-note">* İlerleme her gece saat 00:00'da herkeste otomatik olarak artar. </div>
             </div>
 
-            <!-- EĞLENCE BÖLÜMÜ (YENİ) -->
-            <div class="features-grid">
-                
-                <div class="fun-box">
-                    <h2>🎲 Şanslı Zar</h2>
-                    <div id="dice-result" class="dice">?</div>
-                    <button class="btn-action" onclick="rollDice()">Zar At!</button>
+            <!-- EĞLENCE BÖLÜMÜ (SHORTS MİNİGAME) -->
+            <div class="minigames-wrapper">
+                <div class="mg-header">Hedef Gün: <span id="mg-day-text">0</span>/14 <span id="mg-star-text"></span></div>
+                <div class="mg-slider-container" id="mg-slider-container">
+                    <div class="mg-slider" id="mg-slider">
+                        <!-- Oyun 1 -->
+                        <div class="mg-slide">
+                            <div class="fun-box">
+                                <h2>👆 Tıklama Rekoru</h2>
+                                <p style="font-size: 24px; font-weight: bold; margin: 0 0 15px 0; color: var(--white);">Skor: <span id="click-score">0</span></p>
+                                <button class="btn-action" onclick="increaseScore()" style="background-color: var(--card-1); color: #1e2329;">Bana Tıkla!</button>
+                            </div>
+                        </div>
+                        <!-- Oyun 2 -->
+                        <div class="mg-slide">
+                            <div class="fun-box">
+                                <h2>🎲 Şanslı Zar</h2>
+                                <div id="dice-result" class="dice">?</div>
+                                <button class="btn-action" onclick="rollDice()">Zar At!</button>
+                            </div>
+                        </div>
+                        <!-- Oyun 3 -->
+                        <div class="mg-slide">
+                            <div class="fun-box">
+                                <h2>🪙 Yazı Tura</h2>
+                                <div id="coin-result" class="dice" style="border-radius:50%; width:80px; height:80px;">?</div>
+                                <button class="btn-action" onclick="flipCoin()">Fırlat!</button>
+                            </div>
+                        </div>
+                        <!-- Oyun 4 -->
+                        <div class="mg-slide">
+                            <div class="fun-box">
+                                <h2>📦 Şans Kutusu</h2>
+                                <p style="font-size: 40px; margin: 0 0 15px 0;" id="box-result">🎁</p>
+                                <button class="btn-action" onclick="openBox()">Kutuyu Aç</button>
+                            </div>
+                        </div>
+                        <!-- Oyun 5 -->
+                        <div class="mg-slide">
+                            <div class="fun-box">
+                                <h2>🎨 Renk Bulmaca</h2>
+                                <p style="color:#88929e; margin-bottom:10px;">Rastgele Renk Oluştur!</p>
+                                <button class="btn-action" onclick="this.style.backgroundColor = '#' + Math.floor(Math.random()*16777215).toString(16)">Rengi Değiştir</button>
+                            </div>
+                        </div>
+                        <!-- Oyun 6 -->
+                        <div class="mg-slide">
+                            <div class="fun-box">
+                                <h2>🔢 Şanslı Sayı</h2>
+                                <p style="font-size: 24px; font-weight: bold; margin: 0 0 15px 0; color: var(--white);">Sayı: <span id="lucky-number">-</span></p>
+                                <button class="btn-action" onclick="drawNumber()">1-100 Arası Çek</button>
+                            </div>
+                        </div>
+                        <!-- Oyun 7 -->
+                        <div class="mg-slide">
+                            <div class="fun-box">
+                                <h2>⏱️ Refleks Testi</h2>
+                                <p style="color:#88929e; margin-bottom:10px;">Bas ve değiştir</p>
+                                <button class="btn-action" onclick="this.innerText='Tıklandı!'; setTimeout(()=>this.innerText='Bekle...', 1000)">Bekle...</button>
+                            </div>
+                        </div>
+                        <!-- Oyun 8 -->
+                        <div class="mg-slide">
+                            <div class="fun-box">
+                                <h2>✂️ Taş Kağıt Makas</h2>
+                                <div style="font-size:35px; margin-bottom:15px;" id="rps-result">✊ ✋ ✌️</div>
+                                <button class="btn-action" onclick="playRPS()">Oyna</button>
+                            </div>
+                        </div>
+                        <!-- Oyun 9 -->
+                        <div class="mg-slide">
+                            <div class="fun-box">
+                                <h2>🔮 Sihirli Küre</h2>
+                                <p style="font-size: 18px; font-weight:bold; margin: 0 0 15px 0; color: var(--white);" id="magic-8-ball">Sorunu düşün...</p>
+                                <button class="btn-action" onclick="magicBall()">Salla</button>
+                            </div>
+                        </div>
+                        <!-- Oyun 10 -->
+                        <div class="mg-slide">
+                            <div class="fun-box">
+                                <h2>🎰 Slot Makinesi</h2>
+                                <div style="font-size:35px; margin-bottom:15px;" id="slot-result">🍒 🍋 🔔</div>
+                                <button class="btn-action" onclick="spinSlot()">Çevir</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="fun-box">
-                    <h2>👆 Tıklama Rekoru</h2>
-                    <p style="font-size: 24px; font-weight: bold; margin: 0 0 15px 0; color: var(--white);">Skor: <span id="click-score">0</span></p>
-                    <button class="btn-action" onclick="increaseScore()" style="background-color: var(--card-1); color: #1e2329;">Bana Tıkla!</button>
-                </div>
-
+                <div class="mg-hint">⬇️ Başka bir oyun için fare ile veya dokunarak kaydır ⬆️</div>
             </div>
+            
         </div>
     </div>
 
@@ -438,71 +528,149 @@
                 text.style.animation = 'slideUpIn 0.8s ease forwards';
             }
             if(pageId === 'goal-page') {
-                updateGoalProgress(); // Sayfaya girince barı gerçek zamanlı hesapla
+                updateGoalProgress(); // Sayfaya girince barı güncelle
             }
         }
 
-        // GERÇEK ZAMANLI HEDEF BARI MANTIĞI
+        // GERÇEK ZAMANLI HEDEF BARI MANTIĞI (14 GÜNLÜK)
         function updateGoalProgress() {
-            // LocalStorage'da başlangıç tarihi var mı kontrol et
             let startDateStr = localStorage.getItem('weekProductStartDate');
             
             if (!startDateStr) {
-                // Yoksa şu anki tarihi kaydet
-                startDateStr = new Date().toISOString();
+                // Her gece 00:00'da tam olarak ilerlemesi için başlangıcı o günün gece yarısına ayarlıyoruz.
+                let now = new Date();
+                now.setHours(0, 0, 0, 0); 
+                startDateStr = now.toISOString();
                 localStorage.setItem('weekProductStartDate', startDateStr);
             }
 
             const startDate = new Date(startDateStr);
             const currentDate = new Date();
             
-            // Geçen süreyi milisaniye cinsinden hesapla, sonra güne çevir
+            // Geçen süreyi hesapla
             const diffTime = Math.abs(currentDate - startDate);
-            const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24)); 
+            const totalDaysPassed = Math.floor(diffTime / (1000 * 60 * 60 * 24)); 
             
-            let displayDay = diffDays;
+            // 14 günlük periyot hesaplaması
+            const cyclesCompleted = Math.floor(totalDaysPassed / 14);
+            const currentDayInCycle = totalDaysPassed % 14; 
             
-            // 30'u geçmemesi için sınır koy
-            if (displayDay > 30) {
-                displayDay = 30;
-            }
+            // Kazanılan yıldızlar (Her 14 günde bir yıldız ekler)
+            const stars = "⭐".repeat(cyclesCompleted);
 
+            // Ana Bar Güncellemesi
             const barFill = document.getElementById('goal-bar');
             const counter = document.getElementById('day-counter');
+            barFill.style.width = (currentDayInCycle / 14 * 100) + '%';
+            counter.innerText = currentDayInCycle;
+            document.getElementById('star-display').innerText = stars;
 
-            barFill.style.width = (displayDay / 30 * 100) + '%';
-            counter.innerText = displayDay;
+            // MiniGame Shorts Başlığı Güncellemesi
+            document.getElementById('mg-day-text').innerText = currentDayInCycle;
+            document.getElementById('mg-star-text').innerText = stars;
         }
 
-        // Test için sıfırlama butonu işlevi
-        function resetProgress() {
-            localStorage.removeItem('weekProductStartDate');
-            updateGoalProgress();
-        }
+        // SHORTS GİBİ KAYDIRILABİLİR MİNİGAME SİSTEMİ
+        let currentMgIndex = 0;
+        const totalMg = 10;
+        let isMgAnimating = false;
 
-        // EĞLENCE 1: ZAR ATMA OYUNU
-        function rollDice() {
-            const dice = document.getElementById('dice-result');
-            dice.style.transform = 'rotate(360deg) scale(1.2)';
+        function initSwipe() {
+            const container = document.getElementById('mg-slider-container');
+            if(!container) return;
             
-            // Animasyon süresi sonrası rastgele sayı
-            setTimeout(() => {
-                const randomNum = Math.floor(Math.random() * 6) + 1;
-                dice.innerText = randomNum;
-                dice.style.transform = 'rotate(0deg) scale(1)';
-            }, 300);
+            // Fare tekerleği ile kaydırma
+            container.addEventListener('wheel', (e) => {
+                e.preventDefault();
+                if(isMgAnimating) return;
+                if (e.deltaY > 0) moveMgSlide(1);
+                else moveMgSlide(-1);
+            }, {passive: false});
+
+            // Mobilde parmakla kaydırma
+            let startY = 0;
+            container.addEventListener('touchstart', (e) => {
+                startY = e.touches[0].clientY;
+            }, {passive: true});
+
+            container.addEventListener('touchend', (e) => {
+                if(isMgAnimating) return;
+                let endY = e.changedTouches[0].clientY;
+                if (startY - endY > 40) moveMgSlide(1); // Yukarı kaydır -> Sonraki
+                else if (endY - startY > 40) moveMgSlide(-1); // Aşağı kaydır -> Önceki
+            }, {passive: true});
         }
 
-        // EĞLENCE 2: TIKLAMA REKORU
+        function moveMgSlide(direction) {
+            isMgAnimating = true;
+            currentMgIndex += direction;
+            
+            // Sonsuz döngü kontrolü
+            if (currentMgIndex >= totalMg) currentMgIndex = 0;
+            else if (currentMgIndex < 0) currentMgIndex = totalMg - 1;
+
+            const slider = document.getElementById('mg-slider');
+            slider.style.transform = `translateY(-${currentMgIndex * 300}px)`; // Her oyun boyu 300px
+            
+            setTimeout(() => { isMgAnimating = false; }, 400); // Animasyon bitişini bekle
+        }
+
+        // EĞLENCE MİNİGAME FONKSİYONLARI (10 OYUN)
         let currentScore = 0;
         function increaseScore() {
             currentScore++;
             document.getElementById('click-score').innerText = currentScore;
-            
-            // Tıkladıkça butonu zıplat
             const btn = document.querySelector('.fun-box .btn-action');
             btn.style.transform = 'scale(0.9)';
             setTimeout(() => btn.style.transform = 'scale(1)', 100);
+        }
+
+        function rollDice() {
+            const dice = document.getElementById('dice-result');
+            dice.style.transform = 'rotate(360deg) scale(1.2)';
+            setTimeout(() => {
+                dice.innerText = Math.floor(Math.random() * 6) + 1;
+                dice.style.transform = 'rotate(0deg) scale(1)';
+            }, 300);
+        }
+
+        function flipCoin() {
+            const res = document.getElementById('coin-result');
+            res.style.transform = 'rotateY(360deg)';
+            setTimeout(() => {
+                res.innerText = Math.random() > 0.5 ? "YAZI" : "TURA";
+                res.style.transform = 'rotateY(0deg)';
+            }, 300);
+        }
+
+        function openBox() {
+            const items = ["💎", "💩", "🍔", "🏆", "👻"];
+            document.getElementById('box-result').innerText = items[Math.floor(Math.random() * items.length)];
+        }
+
+        function drawNumber() {
+            document.getElementById('lucky-number').innerText = Math.floor(Math.random() * 100) + 1;
+        }
+
+        function playRPS() {
+            const items = ["✊", "✋", "✌️"];
+            document.getElementById('rps-result').innerText = items[Math.floor(Math.random() * items.length)];
+        }
+
+        function magicBall() {
+            const answers = ["Evet!", "Hayır.", "Belki.", "Kesinlikle!", "İmkansız."];
+            document.getElementById('magic-8-ball').innerText = answers[Math.floor(Math.random() * answers.length)];
+        }
+
+        function spinSlot() {
+            const items = ["🍒", "🍋", "🔔", "💎", "🍉"];
+            const res = document.getElementById('slot-result');
+            let spinInterval = setInterval(() => {
+                res.innerText = `${items[Math.floor(Math.random() * items.length)]} ${items[Math.floor(Math.random() * items.length)]} ${items[Math.floor(Math.random() * items.length)]}`;
+            }, 100);
+            setTimeout(() => {
+                clearInterval(spinInterval);
+            }, 500);
         }
 
         // MODAL VE MÜZİK FONKSİYONLARI (ESKİSİ GİBİ KORUNDU)
@@ -529,6 +697,11 @@
         }
 
         function toggleTheme() { document.body.classList.toggle('light-theme'); }
+
+        // SAYFA YÜKLENDİĞİNDE SHORTS SİSTEMİNİ BAŞLAT
+        document.addEventListener('DOMContentLoaded', () => {
+            initSwipe();
+        });
     </script>
 </body>
 </html>
