@@ -53,7 +53,7 @@
             cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M4 2L4 22L9 16L16 16Z" fill="%23ba273f" stroke="%23ffffff" stroke-width="1.5" stroke-linejoin="round"/></svg>'), auto;
         }
 
-        a, button, .card, .header-icon, .header-title, .social-item, .close-btn, .verified, [onclick] {
+        a, button, .card, .header-icon, .header-title, .social-item, .close-btn, .verified, .dl-card, [onclick] {
             cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10 2a2 2 0 0 1 2 2v4h1a2 2 0 0 1 2 2v1h1a2 2 0 0 1 2 2v5a5 5 0 0 1-5 5h-4a5 5 0 0 1-5-5V8a2 2 0 0 1 2-2h1V4a2 2 0 0 1 2-2z" fill="%23ba273f" stroke="%23ffffff" stroke-width="1"/></svg>'), pointer !important;
         }
 
@@ -86,7 +86,6 @@
 
         .header-right { display: flex; gap: 10px; align-items: center; }
         
-        /* Yeni Para Göstergesi Stili */
         .header-money {
             background-color: var(--panel-border);
             color: #2ecc71;
@@ -133,6 +132,7 @@
 
         @keyframes slideUpIn { to { transform: translateY(0); opacity: 1; } }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes popIn { 0% { transform: scale(0.8); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
 
         /* KARTLAR VE TOOLTİPLER */
         .cards-wrapper { display: flex; gap: 20px; align-items: center; }
@@ -166,20 +166,17 @@
 
         /* MİNECRAFT KARAKTERLERİ */
         .mc-char { width: 100px; height: 120px; position: relative; }
-        /* C1 */
         .c1-head { position: absolute; bottom: 60px; left: 15px; width: 70px; height: 70px; background: #f1c27d; border-radius: 2px; box-shadow: inset 0 15px 0 #d9a05b; }
         .c1-eyes { position: absolute; bottom: 85px; left: 30px; width: 10px; height: 10px; background: #fff; box-shadow: 30px 0 0 #fff; }
         .c1-pupils { position: absolute; bottom: 85px; left: 34px; width: 6px; height: 10px; background: #71b48b; box-shadow: 30px 0 0 #71b48b; }
         .c1-hood { position: absolute; bottom: 60px; left: 5px; width: 90px; height: 80px; background: #86e0a4; opacity: 0.9; clip-path: polygon(0 20%, 10% 0, 90% 0, 100% 20%, 100% 100%, 80% 100%, 80% 20%, 20% 20%, 20% 100%, 0 100%); }
         .c1-body { position: absolute; bottom: 0; left: 10px; width: 80px; height: 60px; background: #a5f0c5; }
         .c1-strings { position: absolute; bottom: 20px; left: 25px; width: 4px; height: 40px; background: #2a5a3f; box-shadow: 46px 0 0 #2a5a3f; }
-        /* C2 */
         .c2-hair-back { position: absolute; bottom: 40px; left: 10px; width: 80px; height: 90px; background: #e5cdb2; }
         .c2-head { position: absolute; bottom: 60px; left: 20px; width: 60px; height: 60px; background: #fff0e5; }
         .c2-eyes { position: absolute; bottom: 80px; left: 25px; width: 15px; height: 8px; background: #96a5c1; box-shadow: 35px 0 0 #96a5c1; }
         .c2-hair-front { position: absolute; bottom: 90px; left: 10px; width: 80px; height: 40px; background: #e5cdb2; clip-path: polygon(0 0, 100% 0, 100% 100%, 70% 80%, 30% 80%, 0 100%); }
         .c2-body { position: absolute; bottom: 0; left: 15px; width: 70px; height: 60px; background: repeating-linear-gradient(180deg, #ffd6e0, #ffd6e0 15px, #fff 15px, #fff 30px); }
-        /* C3 */
         .c3-head { position: absolute; bottom: 60px; left: 20px; width: 60px; height: 60px; background: #ffe4cc; }
         .c3-hair { position: absolute; bottom: 60px; left: 15px; width: 70px; height: 60px; background: #4a4a4a; clip-path: polygon(0 100%, 15% 40%, 85% 40%, 100% 100%); }
         .c3-hat { position: absolute; bottom: 100px; left: 10px; width: 80px; height: 40px; background: #719b6a; border-radius: 4px 4px 0 0; }
@@ -216,63 +213,23 @@
         .progress-bar-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #e9445e, #ff69b4); border-radius: 20px; transition: width 0.5s ease; }
         .info-note { font-size: 14px; color: #88929e; margin-top: 15px; font-style: italic; }
 
-        /* Gizli Günlük Ödül Butonu */
         .daily-reward-btn {
-            position: absolute;
-            bottom: 15px;
-            right: 20px;
-            font-size: 22px;
-            opacity: 0.2;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            position: absolute; bottom: 15px; right: 20px; font-size: 22px; opacity: 0.2; cursor: pointer; transition: all 0.3s ease;
         }
-        .daily-reward-btn:hover {
-            opacity: 1;
-            transform: scale(1.1) rotate(5deg);
-        }
+        .daily-reward-btn:hover { opacity: 1; transform: scale(1.1) rotate(5deg); }
 
-        /* YENİ MİNİGAME SİSTEMİ (GELİŞMİŞ SHORTS UX) */
-        .minigames-wrapper {
-            background: var(--panel-bg); border: 2px solid var(--panel-border);
-            border-radius: 16px; box-shadow: 0 8px 25px var(--shadow);
-            max-width: 450px; margin: 30px auto 0;
-            position: relative; overflow: hidden; display: flex; flex-direction: column;
-        }
-        .mg-header {
-            background: var(--bg-header); color: var(--white);
-            text-align: center; padding: 15px; font-size: 18px; font-weight: 700;
-            border-bottom: 2px solid var(--panel-border); z-index: 10;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-        }
-        .mg-slider-container {
-            height: 320px; overflow: hidden; position: relative; width: 100%;
-            touch-action: none; cursor: grab;
-        }
-        .mg-slider-container:active { cursor: grabbing; }
-        
-        .mg-slider {
-            /* Transisyon JS tarafından kontrol edilecek */
-            display: flex; flex-direction: column; width: 100%;
-        }
-        .mg-slide {
-            height: 320px; width: 100%; display: flex;
-            justify-content: center; align-items: center; padding: 25px; box-sizing: border-box;
-            user-select: none;
-        }
+        /* OYUN KUTULARI (GRID) */
         .fun-box {
             background: var(--panel-bg); border: 2px solid var(--panel-border);
             border-radius: 16px; padding: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.15);
             display: flex; flex-direction: column; align-items: center; justify-content: center;
             width: 100%; height: 100%; box-sizing: border-box;
             background: linear-gradient(145deg, var(--panel-bg), rgba(255,255,255,0.02));
+            transition: transform 0.3s ease, border-color 0.3s;
         }
-        .fun-box h2 { color: var(--card-1); font-size: 22px; margin-top: 0; margin-bottom: 15px; text-shadow: 1px 1px 2px rgba(0,0,0,0.3); }
-        .mg-hint {
-            text-align: center; color: #88929e; font-size: 13px; padding: 12px;
-            background: var(--bg-header); border-top: 1px solid var(--panel-border);
-        }
-
-        /* Eğlence Buton & Tasarım Stilleri */
+        .fun-box:hover { transform: translateY(-5px); border-color: var(--card-1); }
+        .fun-box h2 { color: var(--card-1); font-size: 20px; margin-top: 0; margin-bottom: 15px; text-shadow: 1px 1px 2px rgba(0,0,0,0.3); text-align: center; }
+        
         .dice {
             width: 60px; height: 60px; background: var(--white); color: #222;
             font-size: 36px; font-weight: bold; display: flex; align-items: center; justify-content: center;
@@ -281,9 +238,10 @@
         .btn-action {
             background-color: var(--text-pink); color: #fff; border: none; padding: 12px 20px;
             border-radius: 10px; font-size: 18px; font-weight: 600; font-family: 'Pixelify Sans', sans-serif;
-            transition: all 0.2s; box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            transition: all 0.2s; box-shadow: 0 4px 6px rgba(0,0,0,0.2); text-align: center; display: inline-block; cursor: pointer;
         }
-        .btn-action:hover { background-color: #ba273f; transform: scale(1.05); box-shadow: 0 6px 12px rgba(0,0,0,0.3); }
+        .btn-action:hover:not(:disabled) { background-color: #ba273f; transform: scale(1.05); box-shadow: 0 6px 12px rgba(0,0,0,0.3); }
+        .btn-action:disabled { opacity: 0.7; }
 
         .mg-input {
             padding:10px; border-radius:8px; border:2px solid var(--panel-border);
@@ -292,10 +250,10 @@
         }
         .mg-input:focus { outline: none; border-color: var(--card-1); }
 
-        /* İndirmeler ve Sosyal */
-        .download-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        /* İndirmeler & Kart Listeleri */
+        .download-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
         .dl-card { background-color: var(--panel-bg); border: 2px solid var(--panel-border); border-radius: 16px; padding: 24px; display: flex; justify-content: space-between; align-items: center; transition: all 0.3s ease; }
-        .dl-card:hover { border-color: var(--card-1); transform: translateY(-4px); }
+        .dl-card:hover { border-color: var(--card-1); transform: translateY(-4px); box-shadow: 0 8px 20px var(--shadow); }
         .dl-info { text-align: left; }
         .dl-name { font-size: 22px; font-weight: 600; color: var(--white); margin-bottom: 4px; }
         .dl-status { font-size: 15px; color: #88929e; }
@@ -317,9 +275,9 @@
         .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); backdrop-filter: blur(8px); display: none; justify-content: center; align-items: center; z-index: 1000; opacity: 0; transition: 0.3s; }
         .modal-overlay.active { display: flex; opacity: 1; }
         .modal-box { background: var(--panel-bg); padding: 45px; border-radius: 20px; border: 3px solid var(--text-pink); text-align: center; transform: scale(0.85); transition: 0.3s; position: relative; min-width: 320px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .modal-overlay.active .modal-box { transform: scale(1); }
+        .modal-overlay.active .modal-box { transform: scale(1); animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
         .modal-text { font-size: 24px; color: var(--white); margin: 0 0 20px 0; line-height: 1.4; }
-        .close-btn { position: absolute; top: 10px; right: 15px; font-size: 28px; color: #88929e; transition: 0.2s; }
+        .close-btn { position: absolute; top: 10px; right: 15px; font-size: 28px; color: #88929e; transition: 0.2s; z-index: 10; }
         .close-btn:hover { color: var(--text-pink); }
 
         /* MÜZİK BOTONU */
@@ -328,6 +286,11 @@
         .music-btn.playing { background-color: #e74c3c; border-color: #c0392b; }
         .music-btn.playing:hover { background-color: #c0392b; }
 
+        /* EĞLENCE MODALI İÇİN ÖZEL */
+        .games-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; padding: 10px; }
+        #minigames-modal .modal-box { max-width: 1000px; width: 95%; max-height: 85vh; overflow-y: auto; padding: 30px; }
+        #minigames-modal .modal-box::-webkit-scrollbar { width: 8px; }
+        #minigames-modal .modal-box::-webkit-scrollbar-thumb { background: var(--panel-border); border-radius: 10px; }
     </style>
 </head>
 <body>
@@ -340,8 +303,8 @@
             <div class="header-title" onclick="navigate('main-page')">Week Product</div>
         </div>
         <div class="header-right">
-            <!-- PARA BÖLÜMÜ (YENİ) -->
-            <div id="money-display" class="header-money" title="Mevcut Paran">₺ 0</div>
+            <!-- PARA BÖLÜMÜ TL SAĞDA -->
+            <div id="money-display" class="header-money" title="Mevcut Paran">0 TL</div>
             <button class="header-btn" onclick="toggleTheme()" title="Temayı Değiştir">🌓</button>
         </div>
     </header>
@@ -402,197 +365,57 @@
         <div class="inner-page-content">
             <h1 class="page-title">Diğer Şeyler & Hedef</h1>
             
-            <!-- GERÇEK ZAMANLI HEDEF BARI -->
             <div class="progress-wrapper">
                 <div class="progress-text"><span id="day-counter">0</span> / 14 Gün <span id="star-display"></span></div>
                 <div class="progress-bar-bg">
                     <div class="progress-bar-fill" id="goal-bar"></div>
                 </div>
                 <div class="info-note">* İlerleme her gece saat 00:00'da herkeste otomatik olarak artar. </div>
-                
-                <!-- Günlük Ödül İkonu (Gizli/Dikkat Çekmeyen) -->
                 <div class="daily-reward-btn" onclick="openDailyRewardModal()" title="Günlük Para">🎁</div>
             </div>
 
-            <!-- EĞLENCE BÖLÜMÜ (GELİŞMİŞ SHORTS MİNİGAME) -->
-            <div class="minigames-wrapper">
-                <div class="mg-header">Hedef Gün: <span id="mg-day-text">0</span>/14 <span id="mg-star-text"></span></div>
-                <div class="mg-slider-container" id="mg-slider-container">
-                    <div class="mg-slider" id="mg-slider">
-                        <!-- Oyun 1 -->
-                        <div class="mg-slide">
-                            <div class="fun-box">
-                                <h2>👆 Tıklama Rekoru</h2>
-                                <p style="font-size: 24px; font-weight: bold; margin: 0 0 15px 0; color: var(--white);">Skor: <span id="click-score">0</span></p>
-                                <button class="btn-action" onclick="increaseScore()" style="background-color: var(--card-1); color: #1e2329;">Bana Tıkla!</button>
-                            </div>
-                        </div>
-                        <!-- Oyun 2 -->
-                        <div class="mg-slide">
-                            <div class="fun-box">
-                                <h2>🎲 Şanslı Zar</h2>
-                                <div id="dice-result" class="dice">?</div>
-                                <button class="btn-action" onclick="rollDice()">Zar At!</button>
-                            </div>
-                        </div>
-                        <!-- Oyun 3 -->
-                        <div class="mg-slide">
-                            <div class="fun-box">
-                                <h2>🪙 Yazı Tura</h2>
-                                <div id="coin-result" class="dice" style="border-radius:50%; width:80px; height:80px;">?</div>
-                                <button class="btn-action" onclick="flipCoin()">Fırlat!</button>
-                            </div>
-                        </div>
-                        <!-- Oyun 4 -->
-                        <div class="mg-slide">
-                            <div class="fun-box">
-                                <h2>📦 Şans Kutusu</h2>
-                                <p style="font-size: 40px; margin: 0 0 15px 0;" id="box-result">🎁</p>
-                                <button class="btn-action" onclick="openBox()">Kutuyu Aç</button>
-                            </div>
-                        </div>
-                        <!-- Oyun 5 -->
-                        <div class="mg-slide">
-                            <div class="fun-box">
-                                <h2>🎨 Renk Bulmaca</h2>
-                                <p style="color:#88929e; margin-bottom:10px;">Rastgele Renk Oluştur!</p>
-                                <button class="btn-action" onclick="this.style.backgroundColor = '#' + Math.floor(Math.random()*16777215).toString(16)">Rengi Değiştir</button>
-                            </div>
-                        </div>
-                        <!-- Oyun 6 -->
-                        <div class="mg-slide">
-                            <div class="fun-box">
-                                <h2>🔢 Şanslı Sayı</h2>
-                                <p style="font-size: 24px; font-weight: bold; margin: 0 0 15px 0; color: var(--white);">Sayı: <span id="lucky-number">-</span></p>
-                                <button class="btn-action" onclick="drawNumber()">1-100 Arası Çek</button>
-                            </div>
-                        </div>
-                        <!-- Oyun 7 -->
-                        <div class="mg-slide">
-                            <div class="fun-box">
-                                <h2>⏱️ Refleks Testi</h2>
-                                <p style="color:#88929e; margin-bottom:10px;">Bas ve değiştir</p>
-                                <button class="btn-action" onclick="this.innerText='Tıklandı!'; setTimeout(()=>this.innerText='Bekle...', 1000)">Bekle...</button>
-                            </div>
-                        </div>
-                        <!-- Oyun 8 -->
-                        <div class="mg-slide">
-                            <div class="fun-box">
-                                <h2>✂️ Taş Kağıt Makas</h2>
-                                <div style="font-size:35px; margin-bottom:15px;" id="rps-result">✊ ✋ ✌️</div>
-                                <button class="btn-action" onclick="playRPS()">Oyna</button>
-                            </div>
-                        </div>
-                        <!-- Oyun 9 -->
-                        <div class="mg-slide">
-                            <div class="fun-box">
-                                <h2>🔮 Sihirli Küre</h2>
-                                <p style="font-size: 18px; font-weight:bold; margin: 0 0 15px 0; color: var(--white);" id="magic-8-ball">Sorunu düşün...</p>
-                                <button class="btn-action" onclick="magicBall()">Salla</button>
-                            </div>
-                        </div>
-                        <!-- Oyun 10 -->
-                        <div class="mg-slide">
-                            <div class="fun-box">
-                                <h2>🎰 Slot Makinesi</h2>
-                                <div style="font-size:35px; margin-bottom:15px;" id="slot-result">🍒 🍋 🔔</div>
-                                <button class="btn-action" onclick="spinSlot()">Çevir</button>
-                            </div>
-                        </div>
-                        <!-- Oyun 11 (YENİ) -->
-                        <div class="mg-slide">
-                            <div class="fun-box">
-                                <h2>🤔 Sayı Tahmini (1-10)</h2>
-                                <input type="number" id="mg-guess-input" class="mg-input" placeholder="Sayı?">
-                                <button class="btn-action" onclick="guessMgNumber()">Tahmin Et</button>
-                                <p id="mg-guess-res" style="margin-top:10px; font-weight:bold;"></p>
-                            </div>
-                        </div>
-                        <!-- Oyun 12 (YENİ) -->
-                        <div class="mg-slide">
-                            <div class="fun-box">
-                                <h2>⏳ Tam 3 Saniye!</h2>
-                                <p id="mg-timer-res" style="font-size:28px; font-weight:bold; margin: 0 0 10px 0; color:var(--white);">0.00</p>
-                                <button class="btn-action" onclick="toggleTimerGame(this)" style="background-color:#6c88ff;">Başla / Dur</button>
-                            </div>
-                        </div>
-                        <!-- Oyun 13 (YENİ) -->
-                        <div class="mg-slide">
-                            <div class="fun-box">
-                                <h2>⚡ Hızlı Tıklama (10x)</h2>
-                                <p id="mg-fast-res" style="margin-bottom:10px; font-size:18px;">Süre: 0.0s</p>
-                                <button class="btn-action" onclick="fastClickMg()" id="btn-fast-click" style="background-color:#ff5a79;">Tıkla (0/10)</button>
-                            </div>
-                        </div>
-                        <!-- Oyun 14 (YENİ) -->
-                        <div class="mg-slide">
-                            <div class="fun-box">
-                                <h2>🗺️ Hazine Avı</h2>
-                                <p style="color:#88929e; font-size:13px; margin-bottom:10px;">Elması (💎) Bul!</p>
-                                <div style="display:flex; gap:12px; margin-bottom:10px;">
-                                    <button class="btn-action" onclick="huntTreasure(this, 1)" style="padding:10px 15px;">Kutu 1</button>
-                                    <button class="btn-action" onclick="huntTreasure(this, 2)" style="padding:10px 15px;">Kutu 2</button>
-                                    <button class="btn-action" onclick="huntTreasure(this, 3)" style="padding:10px 15px;">Kutu 3</button>
-                                </div>
-                                <p id="mg-hunt-res" style="font-size:24px; margin:0;"></p>
-                            </div>
-                        </div>
-                        <!-- Oyun 15 (YENİ) -->
-                        <div class="mg-slide">
-                            <div class="fun-box">
-                                <h2>🤥 Yalan Makinesi</h2>
-                                <p style="color:#88929e; margin-bottom:15px; font-size:14px;">Bir şey söyle ve butona bas</p>
-                                <button class="btn-action" onclick="lieDetector()">Analiz Et</button>
-                                <p id="mg-lie-res" style="margin-top:15px; font-size:20px; font-weight:bold; color:var(--white);"></p>
-                            </div>
-                        </div>
-                        <!-- Oyun 16 (YENİ) -->
-                        <div class="mg-slide">
-                            <div class="fun-box">
-                                <h2>🧮 Hızlı Matematik</h2>
-                                <p id="mg-math-q" style="font-size:22px; font-weight:bold; margin: 0 0 10px 0; color:var(--white);">15 + 7 = ?</p>
-                                <input type="number" id="mg-math-ans" class="mg-input" placeholder="Cevap">
-                                <button class="btn-action" onclick="checkMath()" style="background-color:#4fb352;">Cevapla</button>
-                            </div>
-                        </div>
-                        <!-- Oyun 17 (YENİ) -->
-                        <div class="mg-slide">
-                            <div class="fun-box">
-                                <h2>🔓 Şifre Kırıcı</h2>
-                                <p id="mg-hack-res" style="font-size:28px; letter-spacing:5px; margin: 0 0 15px 0; color:#1de2b3;">****</p>
-                                <button class="btn-action" onclick="hackPassword()">Hack'le</button>
-                            </div>
-                        </div>
-                        <!-- Oyun 18 (YENİ) -->
-                        <div class="mg-slide">
-                            <div class="fun-box">
-                                <h2>🎈 Balon Şişirme</h2>
-                                <p id="mg-balloon" style="font-size:30px; margin:0 0 10px 0; transition:0.2s;">🎈</p>
-                                <button class="btn-action" onclick="pumpBalloon()">Şişir</button>
-                            </div>
-                        </div>
-                        <!-- Oyun 19 (YENİ) -->
-                        <div class="mg-slide">
-                            <div class="fun-box">
-                                <h2>🔮 Günlük Enerji</h2>
-                                <button class="btn-action" onclick="dailyEnergy()">Enerjimi Gör</button>
-                                <p id="mg-energy-res" style="margin-top:15px; font-size:16px; color:var(--card-1); font-style:italic;"></p>
-                            </div>
-                        </div>
-                        <!-- Oyun 20 (YENİ) -->
-                        <div class="mg-slide">
-                            <div class="fun-box">
-                                <h2>🎡 Rastgele Kelime</h2>
-                                <p style="color:#88929e; font-size:13px; margin-bottom:10px;">Sessiz Sinema İçin!</p>
-                                <button class="btn-action" onclick="randomWord()">Kelime Çek</button>
-                                <p id="mg-word-res" style="margin-top:15px; font-size:22px; font-weight:bold; color:var(--white);"></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="mg-hint">⬇️ Sürükleyerek veya Fare Tekerleği ile Kaydır ⬆️</div>
+            <!-- EĞLENCE & OYUNLAR KÜÇÜK BUTONU -->
+            <div style="margin-top: 30px; text-align: center;">
+                <button class="btn-action" style="background: linear-gradient(145deg, var(--text-pink), #ff69b4); font-size: 16px; padding: 12px 25px;" onclick="openMinigames()" title="Bu pencere açık kaldığında her 10 saniyede 3.5 TL kazan!">
+                    🎮 Eğlence Oyunları (30 Oyun) - Açık kaldığında: 10 saniyede 3.5 TL kazan
+                </button>
+            </div>
+
+            <!-- SUNUCU OY VERME KÜÇÜK BUTONLARI -->
+            <h2 class="page-title" style="margin-top: 40px; font-size: 28px; border-bottom: 2px solid var(--panel-border);">Sunucu Oylamaları</h2>
+            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                <button class="btn-action" style="background-color: var(--panel-bg); color: var(--white); border: 2px solid var(--panel-border); display: flex; align-items: center; gap: 10px; padding: 10px 15px;" onclick="openVoteTab('weeksmp')">
+                    <img src="weeksmp.png" alt="WeekSMP" style="width: 24px; height: 24px; border-radius: 4px; object-fit: cover;"> WeekSMP Oy Ver
+                </button>
+                <button class="btn-action" style="background-color: var(--panel-bg); color: var(--white); border: 2px solid var(--panel-border); display: flex; align-items: center; gap: 10px; padding: 10px 15px;" onclick="openVoteTab('izmblock')">
+                    <img src="izmblock.png" alt="IZMBlock" style="width: 24px; height: 24px; border-radius: 4px; object-fit: cover;"> IZMBlock Oy Ver
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- OYLAMA PENCERESİ (Ayrı Sekme/Sayfa Olarak) -->
+    <div id="vote-page" class="page">
+        <div class="inner-page-content" style="max-width: 600px;">
+            <div style="text-align: left; margin-bottom: 20px;">
+                <button class="btn-action" style="background-color: var(--panel-border); color: var(--white); font-size: 16px; padding: 8px 15px;" onclick="navigate('goal-page')">⬅ Geri Dön</button>
             </div>
             
+            <div style="background: var(--panel-bg); border-radius: 20px; padding: 40px; border: 2px solid var(--panel-border); box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+                <img id="vote-logo" src="" style="width: 160px; height: 160px; border-radius: 20px; margin-bottom: 25px; box-shadow: 0 8px 25px var(--shadow); object-fit: cover;">
+                <h2 id="vote-title" style="color: var(--text-pink); font-size: 32px; font-weight: 700; margin: 0 0 10px 0;">Sunucu İsmi</h2>
+                <p id="vote-desc" style="color: #88929e; font-size: 16px; margin-bottom: 20px;">Açıklama</p>
+                
+                <div style="background: var(--bg-header); padding: 12px 25px; border-radius: 12px; margin-bottom: 25px; border: 2px solid var(--panel-border); display: inline-block;">
+                    <span style="color: var(--card-1); font-weight: bold; font-size: 20px;">Toplam Oy: <span id="vote-count">0</span></span>
+                </div>
+                
+                <p id="vote-hint" style="color: var(--white); font-size: 16px; margin-bottom: 25px;">Sunucuya oy vermek için tıkla!</p>
+                
+                <!-- Küçük Oylama Butonu -->
+                <button id="vote-btn" class="btn-action" style="background-color: #e74c3c; font-size: 16px; padding: 10px 25px;" onclick="castVote()">Oy Ver (25 TL Kazan)</button>
+            </div>
         </div>
     </div>
 
@@ -647,21 +470,226 @@
         </div>
     </div>
 
+    <!-- EĞLENCE (30 OYUN) PENCERESİ -->
+    <div id="minigames-modal" class="modal-overlay" onclick="closeMinigames()">
+        <div class="modal-box" onclick="event.stopPropagation()">
+            <span class="close-btn" onclick="closeMinigames()">&times;</span>
+            <h2 class="page-title" style="margin-top: 10px; font-size:32px;">🎮 Eğlence Oyunları (30 Oyun)</h2>
+            <p style="color: #2ecc71; font-weight:bold; font-size:16px; margin-bottom: 20px;">Bu pencere açıkken her 10 saniyede 3.5 TL kazanırsın!</p>
+            
+            <div class="games-grid">
+                <!-- Oyun 1 -->
+                <div class="fun-box">
+                    <h2>👆 Tıklama Rekoru</h2>
+                    <p style="font-size: 24px; font-weight: bold; margin: 0 0 15px 0; color: var(--white);">Skor: <span id="click-score">0</span></p>
+                    <button class="btn-action" onclick="increaseScore()" style="background-color: var(--card-1); color: #1e2329;">Bana Tıkla!</button>
+                </div>
+                <!-- Oyun 2 -->
+                <div class="fun-box">
+                    <h2>🎲 Şanslı Zar</h2>
+                    <div id="dice-result" class="dice">?</div>
+                    <button class="btn-action" onclick="rollDice()">Zar At!</button>
+                </div>
+                <!-- Oyun 3 -->
+                <div class="fun-box">
+                    <h2>🪙 Yazı Tura</h2>
+                    <div id="coin-result" class="dice" style="border-radius:50%; width:80px; height:80px;">?</div>
+                    <button class="btn-action" onclick="flipCoin()">Fırlat!</button>
+                </div>
+                <!-- Oyun 4 -->
+                <div class="fun-box">
+                    <h2>📦 Şans Kutusu</h2>
+                    <p style="font-size: 40px; margin: 0 0 15px 0;" id="box-result">🎁</p>
+                    <button class="btn-action" onclick="openBox()">Kutuyu Aç</button>
+                </div>
+                <!-- Oyun 5 -->
+                <div class="fun-box">
+                    <h2>🎨 Renk Bulmaca</h2>
+                    <p style="color:#88929e; margin-bottom:10px;">Rastgele Renk Oluştur!</p>
+                    <button class="btn-action" onclick="this.style.backgroundColor = '#' + Math.floor(Math.random()*16777215).toString(16)">Rengi Değiştir</button>
+                </div>
+                <!-- Oyun 6 -->
+                <div class="fun-box">
+                    <h2>🔢 Şanslı Sayı</h2>
+                    <p style="font-size: 24px; font-weight: bold; margin: 0 0 15px 0; color: var(--white);">Sayı: <span id="lucky-number">-</span></p>
+                    <button class="btn-action" onclick="drawNumber()">1-100 Arası Çek</button>
+                </div>
+                <!-- Oyun 7 -->
+                <div class="fun-box">
+                    <h2>⏱️ Refleks Testi</h2>
+                    <p style="color:#88929e; margin-bottom:10px;">Bas ve değiştir</p>
+                    <button class="btn-action" onclick="this.innerText='Tıklandı!'; setTimeout(()=>this.innerText='Bekle...', 1000)">Bekle...</button>
+                </div>
+                <!-- Oyun 8 -->
+                <div class="fun-box">
+                    <h2>✂️ Taş Kağıt Makas</h2>
+                    <div style="font-size:35px; margin-bottom:15px;" id="rps-result">✊ ✋ ✌️</div>
+                    <button class="btn-action" onclick="playRPS()">Oyna</button>
+                </div>
+                <!-- Oyun 9 -->
+                <div class="fun-box">
+                    <h2>🔮 Sihirli Küre</h2>
+                    <p style="font-size: 18px; font-weight:bold; margin: 0 0 15px 0; color: var(--white);" id="magic-8-ball">Sorunu düşün...</p>
+                    <button class="btn-action" onclick="magicBall()">Salla</button>
+                </div>
+                <!-- Oyun 10 -->
+                <div class="fun-box">
+                    <h2>🎰 Slot Makinesi</h2>
+                    <div style="font-size:35px; margin-bottom:15px;" id="slot-result">🍒 🍋 🔔</div>
+                    <button class="btn-action" onclick="spinSlot()">Çevir</button>
+                </div>
+                <!-- Oyun 11 -->
+                <div class="fun-box">
+                    <h2>🤔 Sayı Tahmini (1-10)</h2>
+                    <input type="number" id="mg-guess-input" class="mg-input" placeholder="Sayı?">
+                    <button class="btn-action" onclick="guessMgNumber()">Tahmin Et</button>
+                    <p id="mg-guess-res" style="margin-top:10px; font-weight:bold; font-size:14px;"></p>
+                </div>
+                <!-- Oyun 12 -->
+                <div class="fun-box">
+                    <h2>⏳ Tam 3 Saniye!</h2>
+                    <p id="mg-timer-res" style="font-size:28px; font-weight:bold; margin: 0 0 10px 0; color:var(--white);">0.00</p>
+                    <button class="btn-action" onclick="toggleTimerGame(this)" style="background-color:#6c88ff;">Başla / Dur</button>
+                </div>
+                <!-- Oyun 13 -->
+                <div class="fun-box">
+                    <h2>⚡ Hızlı Tıklama</h2>
+                    <p id="mg-fast-res" style="margin-bottom:10px; font-size:18px;">Süre: 0.0s</p>
+                    <button class="btn-action" onclick="fastClickMg()" id="btn-fast-click" style="background-color:#ff5a79;">Tıkla (0/10)</button>
+                </div>
+                <!-- Oyun 14 -->
+                <div class="fun-box">
+                    <h2>🗺️ Hazine Avı</h2>
+                    <p style="color:#88929e; font-size:13px; margin-bottom:10px;">Elması (💎) Bul!</p>
+                    <div style="display:flex; gap:10px; margin-bottom:10px;">
+                        <button class="btn-action" onclick="huntTreasure(this, 1)" style="padding:10px;">K-1</button>
+                        <button class="btn-action" onclick="huntTreasure(this, 2)" style="padding:10px;">K-2</button>
+                        <button class="btn-action" onclick="huntTreasure(this, 3)" style="padding:10px;">K-3</button>
+                    </div>
+                    <p id="mg-hunt-res" style="font-size:24px; margin:0;"></p>
+                </div>
+                <!-- Oyun 15 -->
+                <div class="fun-box">
+                    <h2>🤥 Yalan Makinesi</h2>
+                    <p style="color:#88929e; margin-bottom:15px; font-size:14px;">Bir şey söyle ve bas</p>
+                    <button class="btn-action" onclick="lieDetector()">Analiz Et</button>
+                    <p id="mg-lie-res" style="margin-top:10px; font-size:16px; font-weight:bold; color:var(--white);"></p>
+                </div>
+                <!-- Oyun 16 -->
+                <div class="fun-box">
+                    <h2>🧮 Hızlı Matematik</h2>
+                    <p id="mg-math-q" style="font-size:22px; font-weight:bold; margin: 0 0 10px 0; color:var(--white);">15 + 7 = ?</p>
+                    <input type="number" id="mg-math-ans" class="mg-input" placeholder="Cevap">
+                    <button class="btn-action" onclick="checkMath()" style="background-color:#4fb352;">Cevapla</button>
+                </div>
+                <!-- Oyun 17 -->
+                <div class="fun-box">
+                    <h2>🔓 Şifre Kırıcı</h2>
+                    <p id="mg-hack-res" style="font-size:28px; letter-spacing:5px; margin: 0 0 15px 0; color:#1de2b3;">****</p>
+                    <button class="btn-action" onclick="hackPassword()">Hack'le</button>
+                </div>
+                <!-- Oyun 18 -->
+                <div class="fun-box">
+                    <h2>🎈 Balon Şişirme</h2>
+                    <p id="mg-balloon" style="font-size:30px; margin:0 0 10px 0; transition:0.2s;">🎈</p>
+                    <button class="btn-action" onclick="pumpBalloon()">Şişir</button>
+                </div>
+                <!-- Oyun 19 -->
+                <div class="fun-box">
+                    <h2>🔮 Günlük Enerji</h2>
+                    <button class="btn-action" onclick="dailyEnergy()">Enerjimi Gör</button>
+                    <p id="mg-energy-res" style="margin-top:15px; font-size:16px; color:var(--card-1); font-style:italic;"></p>
+                </div>
+                <!-- Oyun 20 -->
+                <div class="fun-box">
+                    <h2>🎡 Rastgele Kelime</h2>
+                    <p style="color:#88929e; font-size:13px; margin-bottom:10px;">Sessiz Sinema İçin!</p>
+                    <button class="btn-action" onclick="randomWord()">Kelime Çek</button>
+                    <p id="mg-word-res" style="margin-top:15px; font-size:22px; font-weight:bold; color:var(--white);"></p>
+                </div>
+                <!-- YENİ EKLENEN 10 OYUN (21-30) -->
+                <!-- Oyun 21 -->
+                <div class="fun-box">
+                    <h2>🎲 D20 Zar (20 Yüz)</h2>
+                    <div id="d20-result" class="dice" style="border-radius:50%; border-color:#6c88ff;">?</div>
+                    <button class="btn-action" onclick="rollD20()">Zar At</button>
+                </div>
+                <!-- Oyun 22 -->
+                <div class="fun-box" id="light-box-bg">
+                    <h2>💡 Işık Anahtarı</h2>
+                    <p style="color:#88929e; margin-bottom:10px;">Işığı Açıp Kapat</p>
+                    <button class="btn-action" onclick="toggleLight()">Anahtar</button>
+                </div>
+                <!-- Oyun 23 -->
+                <div class="fun-box">
+                    <h2>🦇 Yarasa Yakala</h2>
+                    <p id="bat-res" style="font-size: 35px; margin: 0 0 10px 0; transition: 0.2s;">🦇</p>
+                    <button class="btn-action" onclick="catchBat()">Yakala!</button>
+                </div>
+                <!-- Oyun 24 -->
+                <div class="fun-box">
+                    <h2>🎵 Rastgele Nota</h2>
+                    <p id="music-res" style="font-size: 30px; margin: 0 0 10px 0; color:var(--text-pink);">🎶</p>
+                    <button class="btn-action" onclick="playNotes()">Çal</button>
+                </div>
+                <!-- Oyun 25 -->
+                <div class="fun-box">
+                    <h2>🍔 Burger Yap</h2>
+                    <p id="burger-res" style="font-size: 30px; margin: 0 0 10px 0;">🍽️</p>
+                    <button class="btn-action" onclick="makeBurger()">Malzeme Ekle</button>
+                </div>
+                <!-- Oyun 26 -->
+                <div class="fun-box">
+                    <h2>🏎️ Mini Yarış</h2>
+                    <p id="race-res" style="font-size: 20px; font-weight:bold; margin: 0 0 15px 0;">🔴 vs 🔵</p>
+                    <button class="btn-action" onclick="startRace()">Yarış!</button>
+                </div>
+                <!-- Oyun 27 -->
+                <div class="fun-box">
+                    <h2>🎣 Balık Tut</h2>
+                    <p id="fish-res" style="font-size: 35px; margin: 0 0 10px 0;">🌊</p>
+                    <button class="btn-action" onclick="catchFish()">Oltayı At</button>
+                </div>
+                <!-- Oyun 28 -->
+                <div class="fun-box">
+                    <h2>🧱 Tuğla Kır (5x)</h2>
+                    <p id="brick-res" style="font-size: 35px; margin: 0 0 10px 0; transition:0.1s;">🧱</p>
+                    <button class="btn-action" onclick="breakBrick()">Vur</button>
+                </div>
+                <!-- Oyun 29 -->
+                <div class="fun-box">
+                    <h2>👽 Uzaylıyı Bul</h2>
+                    <div style="display:flex; gap:10px; margin-bottom:10px;">
+                        <button class="btn-action" onclick="findAlien(this, 1)" style="padding:10px;">?</button>
+                        <button class="btn-action" onclick="findAlien(this, 2)" style="padding:10px;">?</button>
+                        <button class="btn-action" onclick="findAlien(this, 3)" style="padding:10px;">?</button>
+                    </div>
+                    <p id="alien-res" style="font-size:24px; margin:0;"></p>
+                </div>
+                <!-- Oyun 30 -->
+                <div class="fun-box">
+                    <h2>⚡ Tepki Hızı</h2>
+                    <p id="click-speed-res" style="font-size: 16px; margin: 0 0 15px 0;">Düğme yeşil olunca tıkla!</p>
+                    <button id="reaction-btn" class="btn-action" onclick="checkSpeed()">Bekle</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <footer>
         <a href="https://github.com/Xweeks0" target="_blank" class="footer-link">View me on GitHub!</a>
         <a href="https://www.shopier.com/yzbstore#Buildler" target="_blank" class="footer-link">Buy me a coffee!</a>
     </footer>
 
     <script>
-        // --- PARA SİSTEMİ (YENİ) ---
+        // --- PARA SİSTEMİ (TL SAĞDA) ---
         let userMoney = parseFloat(localStorage.getItem('weekProductMoney')) || 0;
-        let activePage = 'main-page';
         let playtimeTimer = null;
+        let isMinigamesOpen = false;
 
         function updateMoneyDisplay() {
-            // Sadece sayı tam ise tam göster, küsurat varsa (3.5 vb) tek ondalık göster. (Para yazısı yok, sadece tl ikonu)
             let displayVal = Number.isInteger(userMoney) ? userMoney : userMoney.toFixed(1);
-            document.getElementById('money-display').innerText = `₺ ${displayVal}`;
+            document.getElementById('money-display').innerText = `${displayVal} TL`;
             localStorage.setItem('weekProductMoney', userMoney);
         }
 
@@ -672,9 +700,8 @@
 
         function startPlaytimeReward() {
             if (playtimeTimer) clearInterval(playtimeTimer);
-            // 10 saniyede bir 3.5 para ekle
             playtimeTimer = setInterval(() => {
-                if (activePage === 'goal-page') {
+                if (isMinigamesOpen) {
                     addMoney(3.5);
                 }
             }, 10000); 
@@ -687,13 +714,13 @@
         // Günlük Ödül Sistemi
         function openDailyRewardModal() {
             let lastClaim = localStorage.getItem('weekProductDaily');
-            let today = new Date().toLocaleDateString(); // Gece 00:00'da değişir
+            let today = new Date().toLocaleDateString(); 
             const modalText = document.getElementById('modal-content-text');
             
             if (lastClaim === today) {
                 modalText.innerHTML = "❌ Günlük ödülünü zaten aldın!<br><br><span style='font-size:16px;color:#88929e;'>Yarın (00:00) tekrar gel.</span>";
             } else {
-                modalText.innerHTML = "🎉 <b>Günlük Giriş!</b><br><br><span style='color:#1de2b3;'>100 Para</span> kazandın!<br><br><button class='btn-action' onclick='claimDaily()'>Al</button>";
+                modalText.innerHTML = "🎉 <b>Günlük Giriş!</b><br><br><span style='color:#1de2b3;'>100 TL</span> kazandın!<br><br><button class='btn-action' onclick='claimDaily()'>Al</button>";
             }
             document.getElementById('custom-modal').classList.add('active');
         }
@@ -705,26 +732,20 @@
             closeModal();
         }
 
-        // Sayfa Başlangıcı Para Yükleme
         updateMoneyDisplay();
 
         // SAYFA YÖNLENDİRME
         function navigate(pageId) {
             document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
             document.getElementById(pageId).classList.add('active');
-            activePage = pageId;
 
             if(pageId === 'main-page') {
                 const text = document.querySelector('.generate-text');
                 text.style.animation = 'none';
                 text.offsetHeight; 
                 text.style.animation = 'slideUpIn 0.8s ease forwards';
-                stopPlaytimeReward();
             } else if(pageId === 'goal-page') {
                 updateGoalProgress();
-                startPlaytimeReward(); // Minigame sayfasındayken sayacı başlat
-            } else {
-                stopPlaytimeReward();
             }
         }
 
@@ -749,112 +770,104 @@
             barFill.style.width = (currentDayInCycle / 14 * 100) + '%';
             document.getElementById('day-counter').innerText = currentDayInCycle;
             document.getElementById('star-display').innerText = stars;
-            document.getElementById('mg-day-text').innerText = currentDayInCycle;
-            document.getElementById('mg-star-text').innerText = stars;
         }
 
-        // GELİŞMİŞ SHORTS KAYDIRMA SİSTEMİ (Dokunma + Sürtünme)
-        let currentMgIndex = 0;
-        const totalMg = 20; // 20 Oyun
-        let isMgAnimating = false;
+        // --- SUNUCU OYLAMA MANTIĞI (WeekSMP & IZMBlock) - AYRI SEKME ---
+        let currentVoteServer = '';
 
-        function initSwipe() {
-            const container = document.getElementById('mg-slider-container');
-            const slider = document.getElementById('mg-slider');
-            if(!container) return;
+        function openVoteTab(server) {
+            currentVoteServer = server;
+            const logo = document.getElementById('vote-logo');
+            const title = document.getElementById('vote-title');
+            const desc = document.getElementById('vote-desc');
+            const hint = document.getElementById('vote-hint');
+            const btn = document.getElementById('vote-btn');
+            const count = document.getElementById('vote-count');
+
+            // Temel oy sayıları - Artık SIFIRDAN başlıyor
+            let baseVotes = parseInt(localStorage.getItem('weekProduct_' + server + '_Votes')) || 0;
+            count.innerText = baseVotes;
+
+            if (server === 'weeksmp') {
+                logo.src = 'weeksmp.png';
+                title.innerText = 'WeekSMP';
+                desc.innerText = '(SMP Minecraft Sunucusu)';
+                hint.innerText = 'WeekSMP Sunucusuna oy vermek için tıkla!';
+            } else {
+                logo.src = 'izmblock.png';
+                title.innerText = 'IZMBlock';
+                desc.innerText = '(Skyblock Minecraft Sunucusu)';
+                hint.innerText = 'IZMBlock Sunucusuna oy vermek için tıkla!';
+            }
+
+            // Bugün oy verilmiş mi kontrolü (00:00 sıfırlanır)
+            let today = new Date().toLocaleDateString();
+            let lastVote = localStorage.getItem('weekProduct_VoteDate_' + server);
             
-            // Fare Tekerleği
-            container.addEventListener('wheel', (e) => {
-                e.preventDefault();
-                if(isMgAnimating) return;
-                if (e.deltaY > 40) moveMgSlide(1);
-                else if (e.deltaY < -40) moveMgSlide(-1);
-            }, {passive: false});
-
-            // Dokunmatik ve Fare Sürükleme Mantığı (Geliştirildi)
-            let startY = 0;
-            let currentY = 0;
-            let isDragging = false;
-            let isTouch = false;
-
-            // Mobil Touch
-            container.addEventListener('touchstart', dragStart, {passive: true});
-            container.addEventListener('touchmove', dragMove, {passive: true});
-            container.addEventListener('touchend', dragEnd, {passive: true});
-            
-            // PC Fare Drag
-            container.addEventListener('mousedown', (e) => { isTouch = false; dragStart(e); });
-            window.addEventListener('mousemove', dragMove);
-            window.addEventListener('mouseup', dragEnd);
-
-            function getClientY(e) {
-                return e.touches ? e.touches[0].clientY : e.clientY;
+            if (lastVote === today) {
+                btn.innerText = 'Bugün Kullanıldı';
+                btn.style.backgroundColor = '#2ecc71';
+                btn.disabled = true;
+                btn.style.cursor = 'not-allowed';
+            } else {
+                btn.innerText = 'Oy Ver (25 TL Kazan)';
+                btn.style.backgroundColor = '#e74c3c';
+                btn.disabled = false;
+                btn.style.cursor = 'pointer';
             }
 
-            function dragStart(e) {
-                if(isMgAnimating || (e.target.tagName === 'BUTTON' || e.target.tagName === 'INPUT')) return;
-                startY = getClientY(e);
-                isDragging = true;
-                slider.style.transition = 'none'; // Animasyonu kapa, parmağı/fareyi anında takip etsin
-            }
-
-            function dragMove(e) {
-                if (!isDragging) return;
-                currentY = getClientY(e);
-                let diff = currentY - startY;
-                let baseTranslate = -(currentMgIndex * 320); // Slide yüksekliği 320px
-                slider.style.transform = `translateY(${baseTranslate + diff}px)`;
-            }
-
-            function dragEnd(e) {
-                if (!isDragging) return;
-                isDragging = false;
-                let diff = currentY - startY;
-                
-                // 50px'den fazla kaydırıldıysa yönlendir, yoksa geri seğirt (snap)
-                if (diff < -50) moveMgSlide(1);
-                else if (diff > 50) moveMgSlide(-1);
-                else moveMgSlide(0); // Olduğu yere geri dön
-            }
+            // Ayrı sekme (sayfa) olarak aç
+            navigate('vote-page');
         }
 
-        function moveMgSlide(direction) {
-            isMgAnimating = true;
-            currentMgIndex += direction;
+        function castVote() {
+            let today = new Date().toLocaleDateString();
+            localStorage.setItem('weekProduct_VoteDate_' + currentVoteServer, today);
             
-            if (currentMgIndex >= totalMg) currentMgIndex = 0;
-            else if (currentMgIndex < 0) currentMgIndex = totalMg - 1;
+            // Oy sayısını arttır - SIFIRDAN başlayan veri baz alınarak
+            let baseVotes = parseInt(localStorage.getItem('weekProduct_' + currentVoteServer + '_Votes')) || 0;
+            baseVotes += 1;
+            localStorage.setItem('weekProduct_' + currentVoteServer + '_Votes', baseVotes);
+            document.getElementById('vote-count').innerText = baseVotes;
 
-            const slider = document.getElementById('mg-slider');
-            slider.style.transition = 'transform 0.4s cubic-bezier(0.25, 1, 0.5, 1)';
-            slider.style.transform = `translateY(-${currentMgIndex * 320}px)`; // Slide yüksekliği 320px
-            
-            setTimeout(() => { isMgAnimating = false; }, 400); 
+            // 25 TL Para Ödülü Ekle
+            addMoney(25);
+
+            // Butonu Güncelle
+            const btn = document.getElementById('vote-btn');
+            btn.innerText = 'Bugün Kullanıldı';
+            btn.style.backgroundColor = '#2ecc71';
+            btn.disabled = true;
+            btn.style.cursor = 'not-allowed';
+            btn.style.transform = 'scale(1.05)';
+            setTimeout(() => btn.style.transform = 'scale(1)', 200);
         }
 
-        // --- 20 ADET MİNİGAME FONKSİYONLARI ---
+        // --- 30 ADET MİNİGAME FONKSİYONLARI ---
+        function openMinigames() {
+            document.getElementById('minigames-modal').classList.add('active');
+            isMinigamesOpen = true;
+            startPlaytimeReward();
+        }
+        function closeMinigames() {
+            document.getElementById('minigames-modal').classList.remove('active');
+            isMinigamesOpen = false;
+            stopPlaytimeReward();
+        }
+
         let currentScore = 0;
-        function increaseScore() {
-            currentScore++;
-            document.getElementById('click-score').innerText = currentScore;
-        }
+        function increaseScore() { currentScore++; document.getElementById('click-score').innerText = currentScore; }
 
         function rollDice() {
             const dice = document.getElementById('dice-result');
             dice.style.transform = 'rotate(360deg) scale(1.2)';
-            setTimeout(() => {
-                dice.innerText = Math.floor(Math.random() * 6) + 1;
-                dice.style.transform = 'rotate(0deg) scale(1)';
-            }, 300);
+            setTimeout(() => { dice.innerText = Math.floor(Math.random() * 6) + 1; dice.style.transform = 'rotate(0deg) scale(1)'; }, 300);
         }
 
         function flipCoin() {
             const res = document.getElementById('coin-result');
             res.style.transform = 'rotateY(360deg)';
-            setTimeout(() => {
-                res.innerText = Math.random() > 0.5 ? "YAZI" : "TURA";
-                res.style.transform = 'rotateY(0deg)';
-            }, 300);
+            setTimeout(() => { res.innerText = Math.random() > 0.5 ? "YAZI" : "TURA"; res.style.transform = 'rotateY(0deg)'; }, 300);
         }
 
         function openBox() {
@@ -862,9 +875,7 @@
             document.getElementById('box-result').innerText = items[Math.floor(Math.random() * items.length)];
         }
 
-        function drawNumber() {
-            document.getElementById('lucky-number').innerText = Math.floor(Math.random() * 100) + 1;
-        }
+        function drawNumber() { document.getElementById('lucky-number').innerText = Math.floor(Math.random() * 100) + 1; }
 
         function playRPS() {
             const items = ["✊", "✋", "✌️"];
@@ -897,21 +908,12 @@
         function toggleTimerGame(btn) {
             let res = document.getElementById('mg-timer-res');
             if(!timerObj.running) {
-                timerObj.running = true;
-                timerObj.time = 0;
-                res.style.color = "var(--white)";
-                btn.innerText = "Durdur!";
-                timerObj.interval = setInterval(() => {
-                    timerObj.time += 10;
-                    res.innerText = (timerObj.time / 1000).toFixed(2);
-                }, 10);
+                timerObj.running = true; timerObj.time = 0; res.style.color = "var(--white)"; btn.innerText = "Durdur!";
+                timerObj.interval = setInterval(() => { timerObj.time += 10; res.innerText = (timerObj.time / 1000).toFixed(2); }, 10);
             } else {
-                clearInterval(timerObj.interval);
-                timerObj.running = false;
-                btn.innerText = "Tekrar Dene";
+                clearInterval(timerObj.interval); timerObj.running = false; btn.innerText = "Tekrar Dene";
                 let finalTime = (timerObj.time / 1000).toFixed(2);
-                if(finalTime == "3.00") res.style.color = "#1de2b3";
-                else res.style.color = "#e9445e";
+                if(finalTime == "3.00") res.style.color = "#1de2b3"; else res.style.color = "#e9445e";
             }
         }
 
@@ -919,10 +921,7 @@
         function fastClickMg() {
             let btn = document.getElementById('btn-fast-click');
             let res = document.getElementById('mg-fast-res');
-            if(!fastActive) {
-                fastActive = true; fastClicks = 0; fastStartTime = Date.now();
-                res.innerText = "Başladı!";
-            }
+            if(!fastActive) { fastActive = true; fastClicks = 0; fastStartTime = Date.now(); res.innerText = "Başladı!"; }
             fastClicks++;
             btn.innerText = `Tıkla (${fastClicks}/10)`;
             if(fastClicks >= 10) {
@@ -930,15 +929,13 @@
                 let timeSpent = ((Date.now() - fastStartTime) / 1000).toFixed(2);
                 res.innerText = `Bitti! Süre: ${timeSpent}s`;
                 btn.innerText = "Tekrar (0/10)";
-                fastClicks = 0;
             }
         }
 
         function huntTreasure(btn, id) {
             let target = Math.floor(Math.random() * 3) + 1;
             let res = document.getElementById('mg-hunt-res');
-            if(id == target) { res.innerText = "💎 Buldun!"; }
-            else { res.innerText = "💥 Bomba!"; }
+            if(id == target) { res.innerText = "💎 Buldun!"; } else { res.innerText = "💥 Bomba!"; }
         }
 
         function lieDetector() {
@@ -953,46 +950,28 @@
 
         let currentMathA, currentMathB;
         function setMathQ() {
-            currentMathA = Math.floor(Math.random() * 20) + 1;
-            currentMathB = Math.floor(Math.random() * 20) + 1;
+            currentMathA = Math.floor(Math.random() * 20) + 1; currentMathB = Math.floor(Math.random() * 20) + 1;
             document.getElementById('mg-math-q').innerText = `${currentMathA} + ${currentMathB} = ?`;
         }
         function checkMath() {
             let ans = parseInt(document.getElementById('mg-math-ans').value);
-            if(ans === (currentMathA + currentMathB)) {
-                document.getElementById('mg-math-q').innerText = "✅ Doğru!";
-                setTimeout(setMathQ, 1000);
-            } else {
-                document.getElementById('mg-math-q').innerText = "❌ Yanlış!";
-                setTimeout(setMathQ, 1000);
-            }
+            if(ans === (currentMathA + currentMathB)) { document.getElementById('mg-math-q').innerText = "✅ Doğru!"; setTimeout(setMathQ, 1000); } 
+            else { document.getElementById('mg-math-q').innerText = "❌ Yanlış!"; setTimeout(setMathQ, 1000); }
             document.getElementById('mg-math-ans').value = "";
         }
 
         function hackPassword() {
             let res = document.getElementById('mg-hack-res');
-            let inter = setInterval(() => {
-                res.innerText = Math.floor(1000 + Math.random() * 9000);
-            }, 50);
-            setTimeout(() => {
-                clearInterval(inter);
-                res.innerText = Math.floor(1000 + Math.random() * 9000);
-            }, 800);
+            let inter = setInterval(() => { res.innerText = Math.floor(1000 + Math.random() * 9000); }, 50);
+            setTimeout(() => { clearInterval(inter); res.innerText = Math.floor(1000 + Math.random() * 9000); }, 800);
         }
 
         let balloonClicks = 0, popTarget = 5;
         function pumpBalloon() {
             let b = document.getElementById('mg-balloon');
-            if(balloonClicks === 0) popTarget = Math.floor(Math.random() * 8) + 4; // 4-11 arası patlar
-            
-            if(balloonClicks >= popTarget) {
-                b.innerText = "💥"; b.style.fontSize = "30px";
-                balloonClicks = 0;
-            } else {
-                balloonClicks++;
-                b.innerText = "🎈";
-                b.style.fontSize = (30 + (balloonClicks * 8)) + "px";
-            }
+            if(balloonClicks === 0) popTarget = Math.floor(Math.random() * 8) + 4;
+            if(balloonClicks >= popTarget) { b.innerText = "💥"; b.style.fontSize = "30px"; balloonClicks = 0; } 
+            else { balloonClicks++; b.innerText = "🎈"; b.style.fontSize = (30 + (balloonClicks * 8)) + "px"; }
         }
 
         function dailyEnergy() {
@@ -1003,6 +982,98 @@
         function randomWord() {
             let words = ["Minecraft", "Creeper", "Elmas", "Güneş", "Uzaylı", "Bilgisayar", "Pizza", "Dinozor"];
             document.getElementById('mg-word-res').innerText = words[Math.floor(Math.random() * words.length)];
+        }
+
+        // YENİ EKLENEN 10 OYUN FONKSİYONLARI (21 - 30)
+        function rollD20() {
+            const dice = document.getElementById('d20-result');
+            dice.style.transform = 'rotate(360deg) scale(1.2)';
+            setTimeout(() => { dice.innerText = Math.floor(Math.random() * 20) + 1; dice.style.transform = 'rotate(0deg) scale(1)'; }, 300);
+        }
+
+        let lightOn = true;
+        function toggleLight() {
+            let box = document.getElementById('light-box-bg');
+            lightOn = !lightOn;
+            box.style.background = lightOn ? 'linear-gradient(145deg, var(--panel-bg), rgba(255,255,255,0.02))' : '#0a0c0f';
+        }
+
+        function catchBat() {
+            let bat = document.getElementById('bat-res');
+            bat.innerText = "💥"; bat.style.transform = "scale(1.5)";
+            setTimeout(() => { bat.innerText = "🦇"; bat.style.transform = "scale(1)"; }, 600);
+        }
+
+        function playNotes() {
+            let notes = ["Do", "Re", "Mi", "Fa", "Sol", "La", "Si"];
+            let res = document.getElementById('music-res');
+            res.innerText = notes[Math.floor(Math.random() * notes.length)] + " 🎵";
+        }
+
+        let burgerStr = "🍔";
+        function makeBurger() {
+            let res = document.getElementById('burger-res');
+            let items = ["🍅", "🧀", "🥩", "🥬"];
+            burgerStr = items[Math.floor(Math.random() * items.length)] + burgerStr;
+            if (burgerStr.length > 10) burgerStr = "🍔"; // Çok uzunsa sıfırla
+            res.innerText = burgerStr;
+        }
+
+        function startRace() {
+            let res = document.getElementById('race-res');
+            res.innerText = "Yarışılıyor... 🏁";
+            setTimeout(() => {
+                let winner = Math.random() > 0.5 ? "🔴 Kırmızı Kazandı!" : "🔵 Mavi Kazandı!";
+                res.innerText = winner;
+            }, 800);
+        }
+
+        function catchFish() {
+            let res = document.getElementById('fish-res');
+            res.innerText = "Bekleniyor... 🎣";
+            setTimeout(() => {
+                let fishes = ["🐟", "🐠", "🐡", "🦈", "🐙", "🗑️ (Çöp)"];
+                res.innerText = fishes[Math.floor(Math.random() * fishes.length)];
+            }, 1000);
+        }
+
+        let brickHits = 0;
+        function breakBrick() {
+            let res = document.getElementById('brick-res');
+            brickHits++;
+            res.style.transform = `translateX(${Math.random() * 10 - 5}px)`; // Titreme
+            if(brickHits >= 5) {
+                res.innerText = "💥"; brickHits = 0;
+                setTimeout(() => { res.innerText = "🧱"; res.style.transform = "translateX(0)"; }, 800);
+            }
+        }
+
+        function findAlien(btn, id) {
+            let target = Math.floor(Math.random() * 3) + 1;
+            let res = document.getElementById('alien-res');
+            if(id == target) { res.innerText = "👽 Buldun!"; } else { res.innerText = "❌ Yok"; }
+        }
+
+        let reactTimer, reactStart;
+        function checkSpeed() {
+            let btn = document.getElementById('reaction-btn');
+            let res = document.getElementById('click-speed-res');
+            
+            if (btn.innerText === "Bekle") {
+                btn.innerText = "Hazır Ol..."; btn.style.backgroundColor = "#e74c3c";
+                reactTimer = setTimeout(() => {
+                    btn.innerText = "TIKLA!"; btn.style.backgroundColor = "#2ecc71";
+                    reactStart = Date.now();
+                }, Math.random() * 2000 + 1000);
+            } else if (btn.innerText === "TIKLA!") {
+                let time = Date.now() - reactStart;
+                res.innerText = `Hızın: ${time} ms`;
+                btn.innerText = "Bekle"; btn.style.backgroundColor = "var(--text-pink)";
+            } else {
+                clearTimeout(reactTimer);
+                res.innerText = "Erken tıkladın!";
+                btn.innerText = "Bekle"; btn.style.backgroundColor = "var(--text-pink)";
+            }
         }
 
         // --- MODAL VE DİĞER İŞLEMLER ---
@@ -1021,19 +1092,14 @@
         function toggleMusic() {
             const audio = document.getElementById('bg-music');
             const btn = document.getElementById('music-control-btn');
-            if (audio.paused) {
-                audio.play(); btn.innerHTML = "⏸️"; btn.classList.add('playing');
-            } else {
-                audio.pause(); btn.innerHTML = "▶️"; btn.classList.remove('playing');
-            }
+            if (audio.paused) { audio.play(); btn.innerHTML = "⏸️"; btn.classList.add('playing'); } 
+            else { audio.pause(); btn.innerHTML = "▶️"; btn.classList.remove('playing'); }
         }
 
         function toggleTheme() { document.body.classList.toggle('light-theme'); }
 
-        // SAYFA YÜKLENDİĞİNDE BAŞLATILACAKLAR
         document.addEventListener('DOMContentLoaded', () => {
-            initSwipe();
-            setMathQ(); // Matematik sorusunu oluştur
+            setMathQ();
         });
     </script>
 </body>
